@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './common/Navbar';
-import WelcomeGif from '../assets/images/welcome.gif';
+import WelcomeGif from '../assets/images/bifrost-bookings.gif';
 
 const Home = () => {
     return (
@@ -10,7 +10,7 @@ const Home = () => {
             <div className="flex flex-col md:flex-row items-center justify-between bg-gray-100 rounded-lg shadow-md p-4">
                 <div className="md:w-1/2 mb-4 md:mb-0">
 
-                    <h1 className="text-4xl font-bold mb-2">Welcome to Bifröst Booking!</h1>
+                    <h1 className="text-4xl font-bold mb-2">Welcome to Bifröst Bookings!</h1>
                     <p className="text-lg mb-4">Book flights seamlessly with our easy-to-use platform.</p>
                     <Link to="/search" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                         Book a Flight
