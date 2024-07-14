@@ -12,6 +12,7 @@ import FlightDetails from './components/flight/FlightDetails';
 import Search from './components/Search';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
+import './App.css';
 
 const App = () => {
   return (
