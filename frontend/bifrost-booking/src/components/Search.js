@@ -7,61 +7,70 @@ const Search = () => {
     const [returnDate, setReturnDate] = useState('');
     const [passengers, setPassengers] = useState(1);
 
-    const handleSearch = () => {
-
+    const handleSearch = (e) => {
+        e.preventDefault();
         console.log('Searching flights...');
     };
 
     return (
-        <div>
-            <h1>Search Flights</h1>
+        <div className="max-w-md mx-auto mt-10 p-6 bg-rain-300 shadow-md rounded-md">
+            <h1 className="text-2xl font-bold mb-4 text-center text-rain-900">Search Flights</h1>
             <form onSubmit={handleSearch}>
-                <div>
-                    <label>Departure City:</label>
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-rain-700">Departure City:</label>
                     <input
                         type="text"
                         value={departureCity}
                         onChange={(e) => setDepartureCity(e.target.value)}
                         required
+                        className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500"
                     />
                 </div>
-                <div>
-                    <label>Arrival City:</label>
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-rain-700">Arrival City:</label>
                     <input
                         type="text"
                         value={arrivalCity}
                         onChange={(e) => setArrivalCity(e.target.value)}
                         required
+                        className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500"
                     />
                 </div>
-                <div>
-                    <label>Departure Date:</label>
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-rain-700">Departure Date:</label>
                     <input
                         type="date"
                         value={departureDate}
                         onChange={(e) => setDepartureDate(e.target.value)}
                         required
+                        className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500"
                     />
                 </div>
-                <div>
-                    <label>Return Date:</label>
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-rain-700">Return Date:</label>
                     <input
                         type="date"
                         value={returnDate}
                         onChange={(e) => setReturnDate(e.target.value)}
+                        className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500"
                     />
                 </div>
-                <div>
-                    <label>Passengers:</label>
+                <div className="mb-4">
+                    <label className="block text-sm font-medium text-rain-700">Passengers:</label>
                     <input
                         type="number"
                         value={passengers}
                         onChange={(e) => setPassengers(parseInt(e.target.value))}
                         min="1"
                         max="10"
+                        className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500"
                     />
                 </div>
-                <button type="submit">Search</button>
+                <button
+                    type="submit"
+                    className="w-full px-3 py-2 bg-thunder-600 text-thunder-50 font-medium rounded-md shadow-sm hover:bg-thunder-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-thunder-500">
+                    Search
+                </button>
             </form>
         </div>
     )
