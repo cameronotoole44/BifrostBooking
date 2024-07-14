@@ -15,7 +15,7 @@ const Navbar = () => {
                     <li><Link to="/" className="text-gray-300 hover:text-white transition duration-300">Home</Link></li>
                     <li><Link to="/search" className="text-gray-300 hover:text-white transition duration-300">Search Flights</Link></li>
                     <li><Link to="/register" className="text-gray-300 hover:text-white transition duration-300">Register</Link></li>
-                    {/* Add more navigation links as needed */}
+                    <li><Link to="/login" className="text-gray-300 hover:text-white transition duration-300">Login</Link></li>
                 </ul>
             </div>
         </nav>
