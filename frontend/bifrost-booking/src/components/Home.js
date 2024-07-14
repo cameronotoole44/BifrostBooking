@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from './common/Navbar';
+import WelcomeGif from '../assets/images/welcome.gif';
 
 const Home = () => {
     return (
+
         <div className="container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between bg-gray-100 rounded-lg shadow-md p-4">
                 <div className="md:w-1/2 mb-4 md:mb-0">
+
                     <h1 className="text-4xl font-bold mb-2">Welcome to Bifröst Booking!</h1>
                     <p className="text-lg mb-4">Book flights seamlessly with our easy-to-use platform.</p>
                     <Link to="/search" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
@@ -13,7 +17,9 @@ const Home = () => {
                     </Link>
                 </div>
                 <div className="md:w-1/2">
-                    {/* Add any image or content here */}
+                    <div>
+                        <img src={WelcomeGif} alt="WelcomeBifröst" />
+                    </div>
                 </div>
             </div>
 
@@ -31,7 +37,6 @@ const Home = () => {
                         <h3 className="text-xl font-bold mb-2">Secure Booking Process</h3>
                         <p>Book your flights securely.</p>
                     </div>
-                    {/* more features as needed */}
                 </div>
             </div>
 
@@ -43,7 +48,7 @@ const Home = () => {
                 </Link>
             </div>
         </div>
-    );
-}
+    )
+};
 
 export default Home;
