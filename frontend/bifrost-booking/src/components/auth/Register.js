@@ -23,30 +23,30 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-rain-50">
-            <div className="bg-nightshade-200 p-8 rounded shadow-lg max-w-md w-full">
-                <h2 className="text-2xl font-bold mb-6 text-center text-rain-900">Create an Account</h2>
+        <div className="min-h-screen flex items-center justify-center bg-sky-900">
+            <div className="bg-sky-500 p-8 rounded shadow-lg max-w-md w-full">
+                <h2 className="text-2xl font-bold mb-6 text-center text-sky-950">Create an Account</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="firstName" className="block text-sm font-medium text-rain-700">First Name</label>
-                        <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500 sm:text-sm" required />
+                        <label htmlFor="firstName" className="block text-sm font-medium text-sky-950">First Name</label>
+                        <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-sky-400 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" required />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="lastName" className="block text-sm font-medium text-rain-700">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500 sm:text-sm" required />
+                        <label htmlFor="lastName" className="block text-sm font-medium text-sky-950">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-sky-400 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" required />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-rain-700">Email</label>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500 sm:text-sm" required />
+                        <label htmlFor="email" className="block text-sm font-medium text-sky-950">Email</label>
+                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-sky-400 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" required />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="password" className="block text-sm font-medium text-rain-700">Password</label>
-                        <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-rain-400 rounded-md shadow-sm focus:outline-none focus:ring-rain-500 focus:border-rain-500 sm:text-sm" required />
+                        <label htmlFor="password" className="block text-sm font-medium text-sky-950">Password</label>
+                        <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-sky-400 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" required />
                     </div>
-                    <button type="submit" className="w-full px-4 py-2 bg-thunder-600 text-thunder-50 font-bold rounded-md shadow-sm hover:bg-thunder-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-thunder-500">Register</button>
+                    <button type="submit" className="w-full px-4 py-2 bg-salmon-300 text-salmon-50 font-bold rounded-md shadow-sm hover:bg-moss-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-salmon-400">Register</button>
                 </form>
                 <div className="mt-4 text-center">
-                    <Link to="/login" className="text-rain-700 hover:text-rain-900">Already have an account? Login</Link>
+                    <Link to="/login" className="text-moss-300 hover:text-sky-100">Already have an account? Login</Link>
                 </div>
             </div>
         </div>
