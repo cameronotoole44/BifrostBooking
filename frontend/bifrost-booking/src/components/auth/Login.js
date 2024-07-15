@@ -13,12 +13,12 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-clear">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-                <h1 className="text-2xl font-bold mb-6 text-center">Login to Bifröst Bookings</h1>
+        <div className="min-h-screen flex items-center justify-center bg-cloud-800">
+            <div className="bg-cloud-400 p-8 rounded shadow-md w-full max-w-md">
+                <h1 className="text-2xl text-cloud-900 font-bold mb-6 text-center">Login</h1>
                 <form onSubmit={handleLogin}>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                        <label className="block text-cloud-950 text-sm font-bold mb-2" htmlFor="email">
                             Email
                         </label>
                         <input
@@ -26,12 +26,12 @@ const Login = () => {
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-cloud-950 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
                     </div>
                     <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                        <label className="block text-cloud-950 text-sm font-bold mb-2" htmlFor="password">
                             Password
                         </label>
                         <input
@@ -39,14 +39,14 @@ const Login = () => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-cloud-950 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
                     </div>
                     <div className="flex items-center justify-between">
                         <button
                             type="submit"
-                            className="bg-water hover:bg-metal text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-cloud-600 hover:bg-moss-200 hover:text-cloud-700 text-moss-200 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
                             Login
                         </button>
