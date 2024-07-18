@@ -5,27 +5,20 @@ import SearchResults from './SearchResults';
 const Search = () => {
     const [results, setResults] = useState([]);
 
-    const handleSearch = (searchData) => {
-        console.log('Searching flights with:', searchData);
-        // DUMMY RESULT DATA //
-        const dummyResults = [
-            {
-                flightNumber: 'AB123',
-                departureCity: searchData.departureCity,
-                arrivalCity: searchData.arrivalCity,
-                departureDate: searchData.departureDate,
-                returnDate: searchData.returnDate,
-                passengers: searchData.passengers,
-            },
-
-        ];
-        setResults(dummyResults);
+    const handleSearch = async (searchParams) => {
+        try {
+            const query = new URLSearchParams(searchParams).toString();
+            const response = await fetch(`/api/flights?${query}`);
+            const data = await response.json();
+            setResults(data);
+        } catch (error) {
+            console.error('Error fetching flights:', error);
+        }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-leather-200">
-            <div className="max-w-md mx-auto mt-10 p-6 bg-leather-300 shadow-md rounded-md">
-                <h1 className="text-2xl font-bold mb-4 text-center text-leather-950">Search Flights</h1>
+        <div className="container mx-auto">
+            <div className="max-w-lg w-full">
                 <SearchForm onSearch={handleSearch} />
                 <SearchResults results={results} />
             </div>

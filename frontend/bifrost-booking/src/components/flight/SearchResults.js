@@ -2,25 +2,26 @@ import React from 'react';
 
 const SearchResults = ({ results }) => {
     return (
-        <div className="max-w-md mx-auto mt-6 p-4 bg-leather-300 shadow-md rounded-md">
-            <h2 className="text-xl font-bold mb-4 text-center text-leather-950">Search Results</h2>
-            {results.length === 0 ? (
-                <p className="text-center text-leather-700">No results found</p>
-            ) : (
-                <ul>
+        <div className="mt-4">
+            {results.length > 0 ? (
+                <ul className="space-y-4">
                     {results.map((result, index) => (
-                        <li key={index} className="mb-4 p-4 border-b border-leather-400">
-                            <p className="text-sm font-medium text-leather-950">Flight: {result.flightNumber}</p>
-                            <p className="text-sm text-leather-700">From: {result.departureCity} - To: {result.arrivalCity}</p>
-                            <p className="text-sm text-leather-700">Departure: {result.departureDate}</p>
-                            <p className="text-sm text-leather-700">Return: {result.returnDate}</p>
-                            <p className="text-sm text-leather-700">Passengers: {result.passengers}</p>
+                        <li key={index} className="p-4 bg-white shadow rounded-md">
+                            <h2 className="text-xl font-bold text-leather-950">{result.flight.carrier}</h2>
+                            <p>Flight Number: {result.flight.number}</p>
+                            <p>Departure: {result.departure.city}</p>
+                            <p>Arrival: {result.arrival.city}</p>
+                            <p>Departure Date: {result.departure.date}</p>
+                            <p>Return Date: {result.return.date}</p>
+                            <p>Price: {result.price.total} {result.price.currency}</p>
                         </li>
                     ))}
                 </ul>
+            ) : (
+                <p className="text-leather-950">No results found.</p>
             )}
         </div>
-    )
+    );
 };
 
 export default SearchResults;

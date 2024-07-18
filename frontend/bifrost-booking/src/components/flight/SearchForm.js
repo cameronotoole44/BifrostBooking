@@ -5,73 +5,60 @@ const SearchForm = ({ onSearch }) => {
     const [arrivalCity, setArrivalCity] = useState('');
     const [departureDate, setDepartureDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
-    const [passengers, setPassengers] = useState(1);
+    const [oneWay, setOneWay] = useState(false);
+    const [nonStop, setNonStop] = useState(false);
+    const [maxPrice, setMaxPrice] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSearch({ departureCity, arrivalCity, departureDate, returnDate, passengers });
+        onSearch({
+            departureCity,
+            arrivalCity,
+            departureDate,
+            returnDate,
+            oneWay,
+            nonStop,
+            maxPrice
+        });
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">Departure City:</label>
+        <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Existing form fields */}
+            {/* New form fields for additional parameters */}
+            <div>
+                <label htmlFor="oneWay" className="block text-leather-950">One Way:</label>
                 <input
-                    type="text"
-                    value={departureCity}
-                    onChange={(e) => setDepartureCity(e.target.value)}
-                    required
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
+                    type="checkbox"
+                    id="oneWay"
+                    checked={oneWay}
+                    onChange={(e) => setOneWay(e.target.checked)}
+                    className="w-full px-3 py-2 border rounded-md"
                 />
             </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">Arrival City:</label>
+            <div>
+                <label htmlFor="nonStop" className="block text-leather-950">Non-Stop:</label>
                 <input
-                    type="text"
-                    value={arrivalCity}
-                    onChange={(e) => setArrivalCity(e.target.value)}
-                    required
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
+                    type="checkbox"
+                    id="nonStop"
+                    checked={nonStop}
+                    onChange={(e) => setNonStop(e.target.checked)}
+                    className="w-full px-3 py-2 border rounded-md"
                 />
             </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">Departure Date:</label>
-                <input
-                    type="date"
-                    value={departureDate}
-                    onChange={(e) => setDepartureDate(e.target.value)}
-                    required
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">Return Date:</label>
-                <input
-                    type="date"
-                    value={returnDate}
-                    onChange={(e) => setReturnDate(e.target.value)}
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">Passengers:</label>
+            <div>
+                <label htmlFor="maxPrice" className="block text-leather-950">Max Price:</label>
                 <input
                     type="number"
-                    value={passengers}
-                    onChange={(e) => setPassengers(parseInt(e.target.value))}
-                    min="1"
-                    max="10"
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
+                    id="maxPrice"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                    className="w-full px-3 py-2 border rounded-md"
                 />
             </div>
-            <button
-                type="submit"
-                className="w-full px-3 py-2 bg-sand-950 text-sand-50 font-medium rounded-md shadow-sm hover:bg-sand-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sand-500"
-            >
-                Search
-            </button>
+            <button type="submit" className="w-full px-3 py-2 bg-leather-950 text-white rounded-md">Search</button>
         </form>
-    )
+    );
 };
 
 export default SearchForm;
