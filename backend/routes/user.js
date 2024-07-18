@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../models');
 
-// Create a user
+// CREATE USER //
 router.post('/', async (req, res) => {
     try {
         const user = await User.create(req.body);
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Get all users
+// GET ALL USERS //
 router.get('/', async (req, res) => {
     try {
         const users = await User.findAll();
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get a single user
+// GET SINGLE USER //
 router.get('/:id', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Update a user
+// UPDATE USER //
 router.put('/:id', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete a user
+// DELETE USER //
 router.delete('/:id', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
