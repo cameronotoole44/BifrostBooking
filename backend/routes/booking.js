@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Booking } = require('../models');
 
-// Create a booking
+// CREATE BOOKING //
 router.post('/', async (req, res) => {
     try {
         const booking = await Booking.create(req.body);
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Get all bookings
+// GET ALL BOOKINGS //
 router.get('/', async (req, res) => {
     try {
         const bookings = await Booking.findAll();
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get a single booking
+// GET SINGLE BOOKING //
 router.get('/:id', async (req, res) => {
     try {
         const booking = await Booking.findByPk(req.params.id);
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Update a booking
+// UPDATE BOOKING //
 router.put('/:id', async (req, res) => {
     try {
         const booking = await Booking.findByPk(req.params.id);
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete a booking
+// DELETE BOOKING //
 router.delete('/:id', async (req, res) => {
     try {
         const booking = await Booking.findByPk(req.params.id);

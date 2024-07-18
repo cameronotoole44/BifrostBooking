@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Flight } = require('../models');
 
-// Create a flight
+// CREATE FLIGHT //
 router.post('/', async (req, res) => {
     try {
         const flight = await Flight.create(req.body);
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Get all flights
+// GET ALL FLIGHTS //
 router.get('/', async (req, res) => {
     try {
         const flights = await Flight.findAll();
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get a single flight
+// GET SINGLE FLIGHT //
 router.get('/:id', async (req, res) => {
     try {
         const flight = await Flight.findByPk(req.params.id);
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Update a flight
+// UPDATE FLIGHT //
 router.put('/:id', async (req, res) => {
     try {
         const flight = await Flight.findByPk(req.params.id);
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete a flight
+// DELETE FLIGHT //
 router.delete('/:id', async (req, res) => {
     try {
         const flight = await Flight.findByPk(req.params.id);
