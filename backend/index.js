@@ -31,10 +31,10 @@ app.use(cors());
 app.use(express.json());
 
 // ROUTES //
-app.use('/api/auth', authRoutes);
-app.use('/api/bookings', bookingRoutes);
-app.use('/api/flights', flightRoutes);
-app.use('/api/saved-flights', savedFlightRoutes);
+app.use('/auth', authRoutes);
+app.use('/bookings', bookingRoutes);
+app.use('/flights', flightRoutes);
+app.use('/saved-flights', savedFlightRoutes);
 
 // HOME/DEFAULT LANDING //
 app.get('/', (req, res) => {
