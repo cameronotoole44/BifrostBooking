@@ -6,10 +6,10 @@ const jwt = require('jsonwebtoken');
 
 // SIGNUP ROUTE //
 router.post('/signup', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({ username, password: hashedPassword });
+        const newUser = await User.create({ email, password: hashedPassword });
         res.status(201).json(newUser);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -18,9 +18,9 @@ router.post('/signup', async (req, res) => {
 
 // LOGIN ROUTE //
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     try {
-        const user = await User.findOne({ where: { username } });
+        const user = await User.findOne({ where: { email } });
         if (user && await bcrypt.compare(password, user.password)) {
             const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
             res.json({ token });
