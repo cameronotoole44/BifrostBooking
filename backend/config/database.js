@@ -13,7 +13,7 @@ const dbConfig = {
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
     host: dbConfig.host,
     dialect: dbConfig.dialect,
-    logging: false // Change to true if you want to see SQL queries
+    logging: false // * true if you want to see SQL queries * //
 });
 
 module.exports = sequelize;
