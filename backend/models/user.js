@@ -1,26 +1,30 @@
-// models/user.js
-'use strict';
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  });
+class User extends Model { }
 
-  return User;
-};
+User.init({
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+}, {
+  sequelize,
+  modelName: 'User',
+  tableName: 'Users',
+});
+
+module.exports = User;
