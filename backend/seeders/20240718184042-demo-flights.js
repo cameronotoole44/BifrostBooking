@@ -18,8 +18,8 @@ module.exports = {
         returnDate: '2024-08-10',
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      //  TODO: MORE FLIGHT DATA //
+      }
+      // ad more seeed data //
     ]);
   },
 
