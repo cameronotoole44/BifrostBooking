@@ -8,7 +8,7 @@ const Search = () => {
     const handleSearch = async (searchParams) => {
         try {
             const query = new URLSearchParams(searchParams).toString();
-            const response = await fetch(`/api/flights?${query}`);
+            const response = await fetch(`/flights?${query}`);
             const data = await response.json();
             setResults(data);
         } catch (error) {
