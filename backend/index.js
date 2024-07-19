@@ -3,6 +3,7 @@ const cors = require('cors');
 const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 const bookingRoutes = require('./routes/booking');
 const flightRoutes = require('./routes/flight');
 const savedFlightRoutes = require('./routes/savedFlights');
@@ -32,6 +33,7 @@ app.use(express.json());
 
 // ROUTES //
 app.use('/auth', authRoutes);
+app.use('/users', userRoutes);
 app.use('/bookings', bookingRoutes);
 app.use('/flights', flightRoutes);
 app.use('/saved-flights', savedFlightRoutes);
