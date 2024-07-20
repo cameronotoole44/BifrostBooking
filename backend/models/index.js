@@ -11,4 +11,10 @@ db.Flight = require('./flight');
 db.User = require('./user');
 db.Booking = require('./booking');
 
+Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+        db[modelName].associate(db);
+    }
+});
+
 module.exports = db;
