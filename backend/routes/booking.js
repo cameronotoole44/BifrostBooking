@@ -4,10 +4,27 @@ const { Booking } = require('../models');
 
 // CREATE BOOKING //
 router.post('/', async (req, res) => {
+    console.log('Received request to create booking');
+    console.log('Request body:', req.body);
+
     try {
-        const booking = await Booking.create(req.body);
-        res.status(201).json(booking);
+        const { userId, flightId, bookingDate } = req.body;
+
+        if (!userId || !flightId || !bookingDate) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        const newBooking = await Booking.create({
+            userId,
+            flightId,
+            bookingDate
+        });
+
+        console.log('New booking created:', newBooking);
+
+        res.status(201).json(newBooking);
     } catch (error) {
+        console.error('Error creating booking:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
