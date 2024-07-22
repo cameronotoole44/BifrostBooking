@@ -10,7 +10,7 @@ const FlightDetails = () => {
     useEffect(() => {
         const fetchFlightDetails = async () => {
             try {
-                const response = await fetch(`/api/flights/${id}`);
+                const response = await fetch(`/flights/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
