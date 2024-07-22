@@ -1,6 +1,6 @@
 import React from 'react';
-import UserBookings from '../components/Bookings/UserBookings';
-import CreateBooking from '../components/Bookings/CreateBooking';
+import UserBookings from '../bookings/UserBookings';
+import CreateBooking from '../bookings/CreateBooking';
 
 const BookingsPage = () => {
     return (

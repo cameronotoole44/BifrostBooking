@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchFlights from '../components/Flights/SearchFlights';
+import SearchFlights from '../flights/SearchFlights';
 
 const FlightsPage = () => {
     return (
