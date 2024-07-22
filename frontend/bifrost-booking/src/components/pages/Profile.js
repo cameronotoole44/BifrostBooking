@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserProfile, changeUserPassword } from '../../actions/userActions';
+// import { updateUserProfile, changeUserPassword } from '../../actions/userActions';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -44,18 +44,50 @@ const Profile = () => {
         }));
     };
 
-    const handleProfileSubmit = (e) => {
+    const handleProfileSubmit = async (e) => {
         e.preventDefault();
-        dispatch(updateUserProfile(formData));
+        try {
+            const response = await fetch('/api/auth/profile', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                },
+                body: JSON.stringify(formData)
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error updating profile:', error);
+        }
     };
 
-    const handlePasswordSubmit = (e) => {
+    const handlePasswordSubmit = async (e) => {
         e.preventDefault();
         if (passwordData.newPassword !== passwordData.confirmPassword) {
             alert('New password and confirm password do not match');
             return;
         }
-        dispatch(changeUserPassword(passwordData));
+        try {
+            const response = await fetch('/auth/profile/password', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                },
+                body: JSON.stringify(passwordData)
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error changing password:', error);
+        }
     };
 
     return (

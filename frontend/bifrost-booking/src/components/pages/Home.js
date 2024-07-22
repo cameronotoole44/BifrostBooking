@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../common/Navbar';
+import Navbar from './Navbar';
 import WelcomeGif from '../../assets/images/bifrost-bookings.gif';
 
 const Home = () => {
