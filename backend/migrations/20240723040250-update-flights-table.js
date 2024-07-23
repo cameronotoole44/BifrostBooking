@@ -9,11 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      origin: {
+      departureCity: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      destination: {
+      arrivalCity: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -21,9 +21,21 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      returnDate: {
+      arrivalDate: {
         type: Sequelize.DATE,
         allowNull: true,
+      },
+      airline: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      price: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
+      nonStop: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -39,3 +51,4 @@ module.exports = {
     await queryInterface.dropTable('Flights');
   },
 };
+

@@ -4,11 +4,11 @@ const sequelize = require('../config/database');
 class Flight extends Model { }
 
 Flight.init({
-  origin: {
+  departureCity: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  destination: {
+  arrivalCity: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -16,14 +16,38 @@ Flight.init({
     type: DataTypes.DATE,
     allowNull: false,
   },
-  returnDate: {
+  arrivalDate: {
     type: DataTypes.DATE,
     allowNull: true,
+  },
+  airline: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  price: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  nonStop: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
   },
 }, {
   sequelize,
   modelName: 'Flight',
   tableName: 'Flights',
+  timestamps: true,
 });
 
 module.exports = Flight;
+

@@ -23,6 +23,36 @@ router.get('/', async (req, res) => {
     }
 });
 
+// SEARCH FLIGHTS //
+router.get('/search', async (req, res) => {
+    try {
+        const {
+            departureCity,
+            arrivalCity,
+            departureDate,
+            returnDate,
+            oneWay,
+            nonStop,
+        } = req.query;
+
+        const flights = await Flight.findAll({
+            where: {
+                ...(departureCity && { departureCity }),
+                ...(arrivalCity && { arrivalCity }),
+                ...(departureDate && { departureDate: new Date(departureDate) }),
+                ...(returnDate && { returnDate: new Date(returnDate) }),
+                ...(oneWay !== undefined && { oneWay: oneWay === 'true' }),
+                ...(nonStop !== undefined && { nonStop: nonStop === 'true' }),
+            },
+        });
+
+        res.json(flights);
+    } catch (error) {
+        console.error('Error fetching flights:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // GET SINGLE FLIGHT //
 router.get('/:id', async (req, res) => {
     try {
