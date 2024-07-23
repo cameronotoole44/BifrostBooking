@@ -5,9 +5,8 @@ const Footer = () => {
         <footer className="bg-cloud-950 py-8">
             <div className="container mx-auto flex flex-wrap justify-between">
                 <div className="w-full md:w-1/4 mb-4">
-                    <h4 className="text-lg text-moss-200 font-bold mb-2">Contact Us</h4>
-                    <p className='text-cloud-300'>Email: contact@bifrostemail.com</p>
-                    <p className='text-cloud-300'>Phone: +1-123-456-7890</p>
+                    <h4 className="text-lg text-moss-200 font-bold mb-2">Contact The Dev</h4>
+                    <p className='text-cloud-300'>Email: cameronotoole404@gmail.com</p>
                 </div>
 
 

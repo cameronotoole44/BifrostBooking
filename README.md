@@ -6,7 +6,7 @@
 
 ## Inspiration
 
-The inspiration behind **Bifröst Bookings** came from the stress, challenges, and inconveniences often faced while booking flights. I wanted to create a platform that not only makes the booking process easy and efficient but also adds a touch of elegance and modernity through a sleek user interface and seamless user experience. This project also serves as a showcase of my skills with React, Redux, and PostgreSQL, creating a full-stack application.
+The inspiration behind **Bifröst Bookings** came from me wanting to create a fullstack application. using my knowledge in React, Redux, and database management with PostgresSQL. Along with the practical challenges of the stress, and inconveniences often faced while booking flights. I wanted to create a platform that not only makes the booking process easy and efficient but also adds a touch of elegance and modernity through a sleek user interface and seamless user experience.
 
 ## Current Features
 
@@ -21,8 +21,8 @@ This project is currently a work in progress on all fronts. Some of the current 
 
 - **Connecting Backend:** Establishing the database with PostgreSQL and managing backend operations.
 - **Admin Dashboard:** Developing an admin panel to manage flights, bookings, and users.
-- **Improved Search:** Enhancing the search functionality to provide more accurate and faster results.
-- **UI/UX Enhancements:** Continuously improving the design and usability of the application to ensure a smooth user experience.
+- **Improved Search:** Enhancing the search functionality to provide more accurate and faster results, using Amadeus's API.
+- **UI/UX Enhancements:** Continuously improving the design and usability of the application to ensure a smooth user experience (always ongoing change, since I'm not the best with CSS styling -\_-)
 
 ## Future Ideas
 

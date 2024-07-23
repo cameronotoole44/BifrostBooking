@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux';
-import authReducer from './authReducer';
+import bookingReducer from './bookingReducer';
+import flightReducer from './flightReducer';
+import userReducer from './userReducer';
 
-export default combineReducers({
-    auth: authReducer,
-
+const rootReducer = combineReducers({
+    bookings: bookingReducer,
+    flights: flightReducer,
+    user: userReducer
 });
+
+export default rootReducer;
