@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
+import { login } from '../../actions/authActions';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch(loginUser({ email, password }));
+        dispatch(login({ email, password }));
     };
 
     return (
@@ -58,4 +58,3 @@ const Login = () => {
 };
 
 export default Login;
-
