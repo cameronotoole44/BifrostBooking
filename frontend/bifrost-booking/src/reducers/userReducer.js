@@ -1,51 +1,26 @@
+import {
+    USER_LOGIN_REQUEST,
+    USER_LOGIN_SUCCESS,
+    USER_LOGIN_FAIL,
+    USER_LOGOUT,
+} from '../actions/actionTypes';
+
 const initialState = {
-    users: [],
+    userInfo: null,
     loading: false,
     error: null,
 };
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'LOGIN_REQUEST':
-            return {
-                ...state,
-                loading: true,
-                error: null
-            };
-        case 'LOGIN_SUCCESS':
-            return {
-                ...state,
-                loading: false,
-                user: action.payload
-            };
-        case 'LOGIN_FAILURE':
-            return {
-                ...state,
-                loading: false,
-                error: action.error
-            };
-        case 'GET_USERS':
-            return {
-                ...state,
-                users: action.payload,
-            };
-        case 'CREATE_USER':
-            return {
-                ...state,
-                users: [...state.users, action.payload],
-            };
-        case 'UPDATE_USER':
-            return {
-                ...state,
-                users: state.users.map((user) =>
-                    user.id === action.payload.id ? action.payload : user
-                ),
-            };
-        case 'DELETE_USER':
-            return {
-                ...state,
-                users: state.users.filter((user) => user.id !== action.payload),
-            };
+        case USER_LOGIN_REQUEST:
+            return { ...state, loading: true };
+        case USER_LOGIN_SUCCESS:
+            return { ...state, loading: false, userInfo: action.payload };
+        case USER_LOGIN_FAIL:
+            return { ...state, loading: false, error: action.payload };
+        case USER_LOGOUT:
+            return { ...state, userInfo: null };
         default:
             return state;
     }

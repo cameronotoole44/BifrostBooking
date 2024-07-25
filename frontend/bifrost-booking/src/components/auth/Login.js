@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login } from '../../actions/authActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../actions/userActions';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => state.userLogin);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,6 +17,7 @@ const Login = () => {
         <div className="min-h-screen flex items-center justify-center bg-cloud-800">
             <div className="bg-cloud-400 p-8 rounded shadow-md w-full max-w-md">
                 <h1 className="text-2xl text-cloud-900 font-bold mb-6 text-center">Login</h1>
+                {error && <div className="text-red-500 mb-4">{error}</div>}
                 <form onSubmit={handleLogin}>
                     <div className="mb-4">
                         <label className="block text-cloud-950 text-sm font-bold mb-2" htmlFor="email">
@@ -48,7 +50,7 @@ const Login = () => {
                             type="submit"
                             className="bg-cloud-600 hover:bg-moss-200 hover:text-cloud-700 text-moss-200 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
-                            Login
+                            {loading ? 'Logging in...' : 'Login'}
                         </button>
                     </div>
                 </form>
