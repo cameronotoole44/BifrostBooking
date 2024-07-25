@@ -8,6 +8,7 @@ const Register = () => {
         email: '',
         password: ''
     });
+    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,7 +21,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/register', {
+            const response = await fetch('http://localhost:5000/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -32,8 +33,10 @@ const Register = () => {
             }
             const data = await response.json();
             console.log(data);
+            setMessage('Registration successful! You can now log in.'); // Set success message
         } catch (error) {
             console.error('Error registering user:', error);
+            setMessage('Registration failed. Please try again.'); // Set error message
         }
     };
 
@@ -60,8 +63,13 @@ const Register = () => {
                     </div>
                     <button type="submit" className="w-full px-4 py-2 bg-salmon-300 text-salmon-50 font-bold rounded-md shadow-sm hover:bg-moss-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-salmon-400">Register</button>
                 </form>
+                {message && (
+                    <div className="mt-4 text-center text-sky-100">
+                        {message}
+                    </div>
+                )}
                 <div className="mt-4 text-center">
-                    <Link to="/login" className="text-moss-300 hover:text-sky-100">Already have an account? Login</Link>
+                    <Link to="/auth/login" className="text-moss-300 hover:text-sky-100">Already have an account? Login</Link>
                 </div>
             </div>
         </div>

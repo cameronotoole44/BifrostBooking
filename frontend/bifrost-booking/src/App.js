@@ -6,7 +6,7 @@ import SearchFlights from './components/flights/Search';
 import CreateBooking from './components/bookings/CreateBooking';
 import EditBooking from './components/bookings/EditBooking';
 import LoginPage from './components/auth/Login';
-import RegisterPage from './components/auth/Register';
+import Register from './components/auth/Register';
 import Error404 from './components/pages/Error404';
 import Navbar from './components/pages/Navbar';
 import Footer from './components/pages/Footer';
@@ -22,8 +22,8 @@ const App = () => {
         <Route path="/search" element={<SearchFlights />} />
         <Route path="/bookings" element={<CreateBooking />} />
         <Route path="/bookings/:bookingId" element={<EditBooking />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/auth/login" element={<LoginPage />} />
+        <Route path="/auth/register" element={<Register />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
