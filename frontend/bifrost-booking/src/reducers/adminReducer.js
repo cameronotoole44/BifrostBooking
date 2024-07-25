@@ -2,7 +2,7 @@ import {
     CREATE_USER,
     UPDATE_USER,
     DELETE_USER,
-} from './adminActions';
+} from '../actions/adminActions';
 
 const initialState = {
     users: [],
