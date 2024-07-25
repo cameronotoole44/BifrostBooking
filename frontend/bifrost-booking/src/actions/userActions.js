@@ -1,21 +1,40 @@
-export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
-export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
-export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL';
-export const USER_LOGOUT = 'USER_LOGOUT';
+// userActions.js
+import {
+    USER_LOGIN_REQUEST,
+    USER_LOGIN_SUCCESS,
+    USER_LOGIN_FAIL,
+    USER_LOGOUT,
+} from './actionTypes';
 
-export const userLoginRequest = () => ({
-    type: USER_LOGIN_REQUEST,
-});
+export const login = (credentials) => async (dispatch) => {
+    try {
+        dispatch({ type: USER_LOGIN_REQUEST });
 
-export const userLoginSuccess = (userInfo) => ({
-    type: USER_LOGIN_SUCCESS,
-    payload: userInfo,
-});
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials),
+        });
 
-export const userLoginFail = (error) => ({
-    type: USER_LOGIN_FAIL,
-    payload: error,
-});
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: USER_LOGIN_FAIL,
+            payload: error.message,
+        });
+    }
+};
 
 export const userLogout = () => ({
     type: USER_LOGOUT,
