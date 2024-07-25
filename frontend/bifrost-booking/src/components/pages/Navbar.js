@@ -16,13 +16,13 @@ const Navbar = () => {
     let loginActions = (
         <div className="flex space-x-4">
             <Link
-                to="/register"
+                to="/auth/register"
                 className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100"
             >
-                Sign Up
+                Register
             </Link>
             <Link
-                to="/login"
+                to="/auth/login"
                 className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100"
             >
                 Login
