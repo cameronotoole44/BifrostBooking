@@ -1,18 +1,50 @@
 import React, { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logout } from '../actions/userActions';
-import { CurrentUser } from '../contexts/CurrentUser';
+import { Link, useNavigate } from 'react-router-dom';
+import { CurrentUser } from '../../contexts/CurrentUser';
 
 const Navbar = () => {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const { currentUser } = useContext(CurrentUser);
+    const navigate = useNavigate();
+    const { currentUser, setCurrentUser } = useContext(CurrentUser);
 
     const handleLogout = () => {
-        dispatch(logout());
-        history.push('/');
+        // LOGOUT LOGIC //
+        localStorage.removeItem('userInfo');
+        setCurrentUser(null);
+        navigate('/');
     };
+
+    let loginActions = (
+        <div className="flex space-x-4">
+            <Link
+                to="/register"
+                className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100"
+            >
+                Sign Up
+            </Link>
+            <Link
+                to="/login"
+                className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100"
+            >
+                Login
+            </Link>
+        </div>
+    );
+
+    if (currentUser) {
+        loginActions = (
+            <div className="flex items-center space-x-4">
+                <button
+                    onClick={handleLogout}
+                    className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100"
+                >
+                    Logout
+                </button>
+                <span className="text-sky-900 font-bold">
+                    Logged in as {currentUser.firstName} {currentUser.lastName}
+                </span>
+            </div>
+        );
+    }
 
     return (
         <nav className="bg-sand-100 p-4 shadow-lg">
@@ -20,35 +52,11 @@ const Navbar = () => {
                 <Link to="/" className="text-sky-900 text-xl font-bold hover:text-sky-300">
                     Bifröst Bookings
                 </Link>
-                <div className="space-x-4">
-                    <Link to="/search" className="text-sky-900 font-bold hover:text-sky-300">
+                <div className="flex space-x-4">
+                    <Link to="/search" className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100">
                         Search Flights
                     </Link>
-                    {currentUser ? (
-                        <>
-                            <Link to="/profile" className="text-sky-900 font-bold hover:text-sky-300">
-                                Profile
-                            </Link>
-                            <button
-                                onClick={handleLogout}
-                                className="text-sky-900 font-bold hover:text-sky-300"
-                            >
-                                Logout
-                            </button>
-                            <span className="text-sky-900 font-bold">
-                                Logged in as {currentUser.firstName} {currentUser.lastName}
-                            </span>
-                        </>
-                    ) : (
-                        <>
-                            <Link to="/register" className="text-sky-900 font-bold hover:text-sky-300">
-                                Register
-                            </Link>
-                            <Link to="/login" className="text-sky-900 font-bold hover:text-sky-300">
-                                Login
-                            </Link>
-                        </>
-                    )}
+                    {loginActions}
                 </div>
             </div>
         </nav>
@@ -56,3 +64,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
