@@ -3,7 +3,7 @@ import {
     USER_LOGIN_SUCCESS,
     USER_LOGIN_FAIL,
     USER_LOGOUT,
-} from '../actions/userActions';
+} from '../actions/actionTypes'; // Import the action types
 
 const initialState = {
     userInfo: null,
