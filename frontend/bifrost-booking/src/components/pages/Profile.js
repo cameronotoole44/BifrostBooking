@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { updateUserProfile, changeUserPassword } from '../../actions/userActions';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -47,7 +46,7 @@ const Profile = () => {
     const handleProfileSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/auth/profile', {
+            const response = await fetch('http://localhost:5000/profile', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,6 +59,7 @@ const Profile = () => {
             }
             const data = await response.json();
             console.log(data);
+            alert('Profile updated successfully');
         } catch (error) {
             console.error('Error updating profile:', error);
         }
@@ -72,7 +72,7 @@ const Profile = () => {
             return;
         }
         try {
-            const response = await fetch('/auth/profile/password', {
+            const response = await fetch('http://localhost:5000/profile/password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -85,6 +85,7 @@ const Profile = () => {
             }
             const data = await response.json();
             console.log(data);
+            alert('Password changed successfully');
         } catch (error) {
             console.error('Error changing password:', error);
         }
@@ -182,7 +183,7 @@ const Profile = () => {
                 </form>
             </div>
         </div>
-    );
+    )
 };
 
 export default Profile;

@@ -1,28 +1,43 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../actions/userActions';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const dispatch = useDispatch();
-    const { loading, error } = useSelector((state) => state.userLogin);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(login({ email, password }));
+
+
+        try {
+            const response = await fetch('http://localhost:5000/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+            const data = await response.json();
+            dispatch({ type: 'LOGIN_SUCCESS', payload: data });
+            navigate('/profile');
+        } catch (error) {
+            console.error('Error logging in:', error);
+        }
     };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-cloud-800">
             <div className="bg-cloud-400 p-8 rounded shadow-md w-full max-w-md">
                 <h1 className="text-2xl text-cloud-900 font-bold mb-6 text-center">Login</h1>
-                {error && <div className="text-red-500 mb-4">{error}</div>}
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label className="block text-cloud-950 text-sm font-bold mb-2" htmlFor="email">
-                            Email
-                        </label>
+                        <label htmlFor="email" className="block text-cloud-950 text-sm font-bold mb-2">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -33,9 +48,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="mb-6">
-                        <label className="block text-cloud-950 text-sm font-bold mb-2" htmlFor="password">
-                            Password
-                        </label>
+                        <label className="block text-cloud-950 text-sm font-bold mb-2" htmlFor="password"></label>
                         <input
                             type="password"
                             id="password"
@@ -50,7 +63,7 @@ const Login = () => {
                             type="submit"
                             className="bg-cloud-600 hover:bg-moss-200 hover:text-cloud-700 text-moss-200 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
-                            {loading ? 'Logging in...' : 'Login'}
+                            Login
                         </button>
                     </div>
                 </form>
