@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/pages/Home';
 import ProfilePage from './components/pages/Profile';
+import Dashboard from './components/pages/dashboard';
 import SearchFlights from './components/flights/Search';
 import CreateBooking from './components/bookings/CreateBooking';
 import EditBooking from './components/bookings/EditBooking';
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/search" element={<SearchFlights />} />
         <Route path="/bookings" element={<CreateBooking />} />
         <Route path="/bookings/:bookingId" element={<EditBooking />} />
