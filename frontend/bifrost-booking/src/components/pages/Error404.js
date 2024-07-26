@@ -1,10 +1,12 @@
+import error404Image from '../../assets/images/error404.jpg';
+
 function error404() {
     return (
 
         <main>
             <h1>404: PAGE NOT FOUND</h1>
             <p>this page is taking a break🍙</p>
-            <img src="../../assets/images/error404.jpg" alt="odin napping" />
+            <img src={error404Image} alt="odin napping" />
         </main>
 
     )

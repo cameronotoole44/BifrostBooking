@@ -36,7 +36,7 @@ const Home = () => {
             <div className="mt-8 text-center">
                 <h2 className="text-3xl font-bold mb-2 text-sand-400">Start Your Journey Today</h2>
                 <p className="text-lg mb-4 text-cloud-700">Sign up now and enjoy exclusive deals!</p>
-                <Link to="/register" className="bg-sky-900 hover:bg-cloud-900 hover:text-moss-200 text-sand-100 font-bold py-3 px-6 rounded">
+                <Link to="/auth/register" className="bg-sky-900 hover:bg-cloud-900 hover:text-moss-200 text-sand-100 font-bold py-3 px-6 rounded">
                     Sign Up
                 </Link>
             </div>
