@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { Flight } = require('../models');
-const authMiddleware = require('../middleware/authMiddleware');
 
 // CREATE FLIGHT //
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const flight = await Flight.create(req.body);
         res.status(201).json(flight);
@@ -68,7 +67,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // UPDATE FLIGHT //
-router.put('/:id', authMiddleware, async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const flight = await Flight.findByPk(req.params.id);
         if (flight) {
@@ -83,7 +82,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
 });
 
 // DELETE FLIGHT //
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const flight = await Flight.findByPk(req.params.id);
         if (flight) {
@@ -98,3 +97,5 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 });
 
 module.exports = router;
+
+// ADMIN ACCESS TO ADD FLIGHTS ETC. //
