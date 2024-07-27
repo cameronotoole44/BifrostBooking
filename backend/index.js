@@ -1,31 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv');
+const { sequelize } = require('./config/database');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const bookingRoutes = require('./routes/booking');
 const flightRoutes = require('./routes/flight');
-const savedFlightRoutes = require('./routes/savedFlights');
+const adminRoutes = require('./routes/admin');
+const errorHandler = require('./middleware/errorHandler');
 
 dotenv.config();
 
 const app = express();
-
-// SEQUELIZE //
-const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: process.env.DB_DIALECT,
-});
-
-(async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
-})();
 
 // MIDDLEWARE //
 app.use(cors());
@@ -36,7 +22,7 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/bookings', bookingRoutes);
 app.use('/flights', flightRoutes);
-app.use('/saved-flights', savedFlightRoutes);
+app.use('/admin', adminRoutes);
 
 // HOME/DEFAULT LANDING //
 app.get('/', (req, res) => {
@@ -49,11 +35,12 @@ app.get('*', (req, res) => {
 });
 
 // ERROR HANDLING MIDDLEWARE //
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke -_- !');
-});
+app.use(errorHandler);
 
 // SERVER START //
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}).catch(err => {
+    console.error('Unable to connect to the database:', err);
+});
