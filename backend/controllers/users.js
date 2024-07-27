@@ -1,7 +1,8 @@
 const { User, Booking } = require('../models');
 const bcrypt = require('bcrypt');
 
-// GETS USER PROFILE //
+
+// GET USER PROFILE //
 exports.getUserProfile = async (req, res) => {
     try {
         const user = await User.findByPk(req.user.id);
@@ -11,6 +12,7 @@ exports.getUserProfile = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
 
 // UPDATE USER PROFILE //
 exports.updateUserProfile = async (req, res) => {
@@ -29,11 +31,57 @@ exports.updateUserProfile = async (req, res) => {
     }
 };
 
-// GETS USER'S BOOKINGS //
+// GET USERS BOOKINGS //
 exports.getUserBookings = async (req, res) => {
     try {
-        const bookings = await Booking.findAll({ where: { userId: req.user.id } });
+        const bookings = await Booking.findAll({ where: { userId: req.user.id }, include: ['flight'] });
         res.json(bookings);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
+// CREATE A BOOKING //
+exports.createBooking = async (req, res) => {
+    const { flightId } = req.body;
+    try {
+        const flight = await Flight.findByPk(flightId);
+        if (!flight) return res.status(404).json({ error: 'Flight not found' });
+
+        const booking = await Booking.create({ userId: req.user.id, flightId });
+        res.status(201).json(booking);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+// UPDATE BOOKING //
+exports.updateBooking = async (req, res) => {
+    const { id } = req.params;
+    const { flightId } = req.body;
+    try {
+        const booking = await Booking.findByPk(id);
+        if (!booking || booking.userId !== req.user.id) return res.status(404).json({ error: 'Booking not found' });
+
+        if (flightId) booking.flightId = flightId;
+        await booking.save();
+        res.json(booking);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
+// DELETE BOOKING //
+exports.deleteBooking = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const booking = await Booking.findByPk(id);
+        if (!booking || booking.userId !== req.user.id) return res.status(404).json({ error: 'Booking not found' });
+
+        await booking.destroy();
+        res.status(204).end();
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
