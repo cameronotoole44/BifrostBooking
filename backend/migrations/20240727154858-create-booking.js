@@ -1,49 +1,42 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Bookings', {
       id: {
-        allowNull: false,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Users',
-          key: 'id'
+          key: 'id',
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        allowNull: false,
       },
       flightId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Flights',
-          key: 'id'
+          key: 'id',
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        allowNull: false,
       },
       bookingDate: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
-      }
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Bookings');
-  }
+  },
 };
