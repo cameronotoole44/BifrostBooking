@@ -6,7 +6,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const bookingRoutes = require('./routes/booking');
 const flightRoutes = require('./routes/flight');
-const adminRoutes = require('./routes/admin');
+// const adminRoutes = require('./routes/admin');
 const errorHandler = require('./middleware/errorHandler');
 
 dotenv.config();
@@ -14,7 +14,9 @@ dotenv.config();
 const app = express();
 
 // MIDDLEWARE //
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 app.use(express.json());
 
 // ROUTES //
@@ -22,7 +24,7 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/bookings', bookingRoutes);
 app.use('/flights', flightRoutes);
-app.use('/admin', adminRoutes);
+// app.use('/admin', adminRoutes);
 
 // HOME/DEFAULT LANDING //
 app.get('/', (req, res) => {
