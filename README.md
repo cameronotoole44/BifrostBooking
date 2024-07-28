@@ -2,31 +2,39 @@
 
 ## Introduction
 
-**Bifröst Bookings** is an innovative flight booking application designed to streamline the process of finding and reserving flights. Named after the mythical rainbow bridge, Bifröst, that connects the realms in Norse mythology, this application aims to bridge the gap between travelers and their dream destinations.
+Welcome to **Bifröst Bookings** – your gateway to seamless flight reservations! Inspired by the legendary rainbow bridge from Norse mythology, Bifröst, this app bridges the gap between travelers and their dream destinations with ease and efficiency.
 
 ## Inspiration
 
-The inspiration behind **Bifröst Bookings** came from me wanting to create a fullstack application. using my knowledge in React, Redux, and database management with PostgresSQL. Along with the practical challenges of the stress, and inconveniences often faced while booking flights. I wanted to create a platform that not only makes the booking process easy and efficient but also adds a touch of elegance and modernity through a sleek user interface and seamless user experience.
+**Bifröst Bookings** emerged from a blend of my passion for full-stack development and the desire to alleviate the hassles of flight booking. Using React, Redux, and PostgreSQL, I've crafted a platform that transforms the booking experience with a sleek interface and intuitive design, ensuring your journey starts with a smile.
 
 ## Current Features
 
-- **User Authentication:** Secure registration and login for users to manage their bookings.
-- **User Profiles:** Allowing users to create and manage profiles with saved preferences and past bookings.
-- **Flight Search:** Users can search for flights based on departure city, arrival city, departure date, return date, and number of passengers.
-- **Booking Management:** Users can view their bookings and manage them as needed.
+- **User Authentication:** Enjoy secure and hassle-free registration and login, safeguarding your travel plans.
+- **User Profiles:** Manage your bookings with ease, making edits as needed.
+- **Flight Search:** Effortlessly search for flights by departure city, arrival city, dates, and passenger count.
+- **Booking Management:** Handle your bookings with basic CRUD operations for total control.
 
 ## Currently Working On
 
-This project is currently a work in progress on all fronts. Some of the current tasks include:
+**Bifröst Bookings** Current development highlights include:
 
-- **Connecting Backend:** Establishing the database with PostgreSQL and managing backend operations.
-- **Admin Dashboard:** Developing an admin panel to manage flights, bookings, and users.
-- **Improved Search:** Enhancing the search functionality to provide more accurate and faster results, using Amadeus's API.
-- **UI/UX Enhancements:** Continuously improving the design and usability of the application to ensure a smooth user experience (always ongoing change, since I'm not the best with CSS styling -\_-)
+- **Admin Dashboard:** Crafting a powerful panel for managing flights, bookings, and users with ease.
+- **User Dashboard:** Building a user-friendly profile homepage for easy navigation, settings updates, and booking management.
+- **Enhanced Search:** Boosting search functionality for accurate, speedy results, exploring options like the Amadeus API or generating flights with the Faker library.
+- **UI/UX Enhancements:** Always refining the design and usability to ensure a delightful user journey (CSS wizards, tips are welcome -\_-).
 
 ## Future Ideas
 
-- **Payment Integration:**
-- **Notifications:**
-- **Multi-language Support:**
-- **Mobile Application:**
+Looking ahead, **Bifröst Bookings** envisions:
+
+- **Multi-language Support:** Catering to a global audience with diverse language options.
+- **Mobile Application:** Bringing the power of Bifröst to your fingertips with a mobile app.
+- **Notifications:** Keeping you updated with timely flight and booking alerts.
+- **Payment Integration:** Streamlining the booking process with seamless payment options (less likely at the moment)
+
+---
+
+### Note
+
+This project is built for personal learning purposes. While I'm passionate about developing **Bifröst Bookings**, I don't plan to take it into full production. It's a playground for honing my skills and exploring new technologies at the moment.
