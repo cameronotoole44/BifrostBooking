@@ -19,10 +19,13 @@ const Login = () => {
                 },
                 body: JSON.stringify({ email, password })
             });
+
             if (!response.ok) {
-                throw new Error('Login failed');
+                throw new Error(`Login failed with status: ${response.status}`);
             }
+
             const data = await response.json();
+
             dispatch({ type: 'LOGIN_SUCCESS', payload: data });
             navigate('/profile');
         } catch (error) {
