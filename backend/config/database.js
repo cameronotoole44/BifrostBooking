@@ -10,14 +10,20 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
     dialect: config.dialect,
 });
 
+const User = require('../models/user');
+const Booking = require('../models/booking');
+const Flight = require('../models/flight');
+
 const models = {
-    User: require('../models/user'),
-    Booking: require('../models/booking'),
-    Flight: require('../models/flight')
+    User: User(sequelize, Sequelize.DataTypes),
+    Booking: Booking(sequelize, Sequelize.DataTypes),
+    Flight: Flight(sequelize, Sequelize.DataTypes),
 };
 
 Object.values(models).forEach(model => {
-    model.associate && model.associate(models);
+    if (model.associate) {
+        model.associate(models);
+    }
 });
 
 module.exports = { sequelize, models };
