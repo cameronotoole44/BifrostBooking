@@ -3,17 +3,17 @@ import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_LOGOUT } 
 const initialState = {
     currentUser: null,
     loading: false,
-    error: null
+    error: null,
 };
 
 try {
-    const userInfo = localStorage.getItem('userInfo');
+    const userInfo = localStorage.getItem('currentUser');
     if (userInfo) {
         initialState.currentUser = JSON.parse(userInfo);
     }
 } catch (e) {
     console.error('Failed to parse userInfo from localStorage:', e);
-    localStorage.removeItem('userInfo');
+    localStorage.removeItem('currentUser');
 }
 
 const userReducer = (state = initialState, action) => {
@@ -21,27 +21,28 @@ const userReducer = (state = initialState, action) => {
         case USER_LOGIN_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
             };
         case USER_LOGIN_SUCCESS:
+            console.log('USER_LOGIN_SUCCESS:', action.payload);
             return {
                 ...state,
                 currentUser: action.payload,
                 loading: false,
-                error: null
+                error: null,
             };
         case USER_LOGIN_FAIL:
             return {
                 ...state,
                 loading: false,
-                error: action.payload
+                error: action.payload,
             };
         case USER_LOGOUT:
             return {
                 ...state,
                 currentUser: null,
                 loading: false,
-                error: null
+                error: null,
             };
         default:
             return state;
