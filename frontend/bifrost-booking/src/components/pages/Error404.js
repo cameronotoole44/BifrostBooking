@@ -1,6 +1,6 @@
 import error404Image from '../../assets/images/error404.jpg';
 
-function error404() {
+const error404 = () => {
     return (
 
         <main>
