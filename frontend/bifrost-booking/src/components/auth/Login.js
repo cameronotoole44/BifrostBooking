@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../actions/userActions';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -8,70 +9,55 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const { currentUser, loading, error } = useSelector((state) => state.user);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const response = await fetch('http://localhost:5000/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            });
-
-            if (!response.ok) {
-                throw new Error(`Login failed with status: ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            dispatch({ type: 'LOGIN_SUCCESS', payload: data });
-            navigate('/profile');
-        } catch (error) {
-            console.error('Error logging in:', error);
-        }
+        await dispatch(loginUser({ email, password }));
     };
 
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/dashboard');
+        }
+    }, [currentUser, navigate]);
+
     return (
-        <div className="min-h-screen flex items-center justify-center bg-cloud-800">
-            <div className="bg-cloud-400 p-8 rounded shadow-md w-full max-w-md">
-                <h1 className="text-2xl text-cloud-900 font-bold mb-6 text-center">Login</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-cloud-950 text-sm font-bold mb-2">Email</label>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Login</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
                         <input
                             type="email"
-                            id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-cloud-950 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Email"
                             required
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
-                    <div className="mb-6">
-                        <label className="block text-cloud-950 text-sm font-bold mb-2" htmlFor="password"></label>
+                    <div>
                         <input
                             type="password"
-                            id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-cloud-950 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Password"
                             required
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
-                    <div className="flex items-center justify-between">
-                        <button
-                            type="submit"
-                            className="bg-cloud-600 hover:bg-moss-200 hover:text-cloud-700 text-moss-200 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        >
-                            Login
-                        </button>
-                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        {loading ? 'Loading...' : 'Login'}
+                    </button>
                 </form>
+                {error && <p className="text-red-500 mt-4">{error}</p>}
             </div>
         </div>
-    )
+    );
 };
 
 export default Login;
