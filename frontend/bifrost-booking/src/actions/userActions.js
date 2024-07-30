@@ -1,6 +1,6 @@
 import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_LOGOUT } from '../actions/actionTypes';
 
-export const loginUser = (userData) => async (dispatch) => {
+export const loginUser = (credentials) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST });
     try {
         const response = await fetch('http://localhost:5000/auth/login', {
@@ -8,18 +8,19 @@ export const loginUser = (userData) => async (dispatch) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(credentials)
         });
 
         const data = await response.json();
+        console.log('Login response data:', data); //
 
         if (response.ok) {
             dispatch({
                 type: USER_LOGIN_SUCCESS,
-                payload: data
+                payload: data.user
             });
-
-            localStorage.setItem('userInfo', JSON.stringify(data));
+            console.log('Dispatched USER_LOGIN_SUCCESS with:', data.user);
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
         } else {
             dispatch({
                 type: USER_LOGIN_FAIL,
@@ -35,6 +36,6 @@ export const loginUser = (userData) => async (dispatch) => {
 };
 
 export const logoutUser = () => (dispatch) => {
-    localStorage.removeItem('userInfo');
+    localStorage.removeItem('currentUser');
     dispatch({ type: USER_LOGOUT });
 };

@@ -14,7 +14,8 @@ exports.registerUser = async (req, res) => {
             return res.status(400).json({ error: 'User already exists' });
         }
 
-        const newUser = await User.create({ firstName, lastName, email, password });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = await User.create({ firstName, lastName, email, password: hashedPassword });
 
         res.status(201).json(newUser);
     } catch (error) {
@@ -22,7 +23,6 @@ exports.registerUser = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
 
 exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -42,7 +42,15 @@ exports.loginUser = async (req, res) => {
             return res.status(401).json({ error: 'Invalid password' });
         }
 
-        res.status(200).json({ message: 'Login successful' });
+        res.status(200).json({
+            message: 'Login successful',
+            user: {
+                id: user.id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            }
+        });
     } catch (error) {
         console.error('Error during login:', error);
         res.status(500).json({ error: 'Internal server error' });

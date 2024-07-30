@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CurrentUser } from '../../contexts/CurrentUser';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../../actions/userActions';
 const Navbar = () => {
     const navigate = useNavigate();
-    const { currentUser, setCurrentUser } = useContext(CurrentUser);
+    const dispatch = useDispatch();
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     const handleLogout = () => {
-        // LOGOUT LOGIC //
-        localStorage.removeItem('userInfo');
-        setCurrentUser(null);
+        dispatch(logoutUser());
         navigate('/');
     };
 

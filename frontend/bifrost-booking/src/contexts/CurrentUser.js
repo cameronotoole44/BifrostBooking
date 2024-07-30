@@ -11,6 +11,7 @@ const CurrentUserProvider = ({ children }) => {
 
     useEffect(() => {
         const storedUser = localStorage.getItem('currentUser');
+        console.log('Stored user:', storedUser);
         if (storedUser) {
             setCurrentUser(JSON.parse(storedUser));
         }
