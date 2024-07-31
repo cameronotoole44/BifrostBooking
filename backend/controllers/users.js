@@ -2,8 +2,8 @@ const { User, Booking } = require('../models');
 const bcrypt = require('bcrypt');
 
 
-// GET USER PROFILE //
-exports.getUserProfile = async (req, res) => {
+// GET USER SETTINGS //
+exports.getUserSettings = async (req, res) => {
     try {
         const user = await User.findByPk(req.user.id);
         if (!user) return res.status(404).json({ error: 'User not found' });
@@ -14,8 +14,8 @@ exports.getUserProfile = async (req, res) => {
 };
 
 
-// UPDATE USER PROFILE //
-exports.updateUserProfile = async (req, res) => {
+// UPDATE USER SETTINGS //
+exports.updateUserSettings = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findByPk(req.user.id);

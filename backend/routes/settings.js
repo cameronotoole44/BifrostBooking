@@ -11,9 +11,9 @@ router.put('/', async (req, res) => {
         await User.update({ firstName, lastName, email }, {
             where: { id: userId }
         });
-        res.status(200).json({ message: 'Profile updated successfully' });
+        res.status(200).json({ message: 'Settings updated successfully' });
     } catch (error) {
-        res.status(500).json({ error: 'Error updating profile' });
+        res.status(500).json({ error: 'Error updating settings' });
     }
 });
 

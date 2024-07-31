@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import HomePage from './components/pages/Home';
-import ProfilePage from './components/pages/Profile';
+import SettingsPage from './components/pages/Settings';
 import Dashboard from './components/pages/dashboard';
 import SearchFlights from './components/flights/Search';
 import CreateBooking from './components/bookings/CreateBooking';
@@ -22,7 +22,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/search" element={<SearchFlights />} />
           <Route path="/bookings" element={<CreateBooking />} />

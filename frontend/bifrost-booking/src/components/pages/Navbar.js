@@ -71,8 +71,8 @@ const Navbar = () => {
                     </Link>
                     {currentUser && (
                         <>
-                            <Link to="/profile" className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100">
-                                Profile
+                            <Link to="/settings" className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100">
+                                Settings
                             </Link>
                             <Link to="/dashboard" className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100">
                                 Dashboard

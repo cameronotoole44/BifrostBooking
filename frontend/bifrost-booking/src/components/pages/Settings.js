@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-const Profile = () => {
+const Settings = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
 
@@ -43,10 +43,10 @@ const Profile = () => {
         }));
     };
 
-    const handleProfileSubmit = async (e) => {
+    const handleSettingsSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/profile', {
+            const response = await fetch('http://localhost:5000/settings', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,9 +59,9 @@ const Profile = () => {
             }
             const data = await response.json();
             console.log(data);
-            alert('Profile updated successfully');
+            alert('Settings updated successfully');
         } catch (error) {
-            console.error('Error updating profile:', error);
+            console.error('Error updating settings:', error);
         }
     };
 
@@ -72,7 +72,7 @@ const Profile = () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:5000/profile/password', {
+            const response = await fetch('http://localhost:5000/settings/password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,11 +93,11 @@ const Profile = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-4xl font-bold mb-8">Profile</h1>
+            <h1 className="text-4xl font-bold mb-8">Settings</h1>
 
             <div className="bg-gray-100 rounded-lg shadow-md p-4 mb-8">
-                <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
-                <form onSubmit={handleProfileSubmit}>
+                <h2 className="text-2xl font-bold mb-4">Update Info</h2>
+                <form onSubmit={handleSettingsSubmit}>
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
                         <input
@@ -134,7 +134,7 @@ const Profile = () => {
                     <button
                         type="submit"
                         className="bg-sky-400 text-thunder-50 hover:bg-rain-600 hover:text-salmon-200 font-bold py-2 px-4 rounded">
-                        Update Profile
+                        Update
                     </button>
                 </form>
             </div>
@@ -177,7 +177,7 @@ const Profile = () => {
                     </div>
                     <button
                         type="submit"
-                        className="bg-rain-500 text-rain-50 hover:bg-rain-600 font-bold py-2 px-4 rounded">
+                        className="bg-sky-400 text-thunder-50 hover:bg-rain-600 hover:text-salmon-200 font-bold py-2 px-4 rounded">
                         Change Password
                     </button>
                 </form>
@@ -186,4 +186,4 @@ const Profile = () => {
     )
 };
 
-export default Profile;
+export default Settings;

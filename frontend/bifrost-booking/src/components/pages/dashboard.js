@@ -86,9 +86,9 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className={`controlBar p-6 shadow-md rounded-lg ${styles.settingsBackground}`}>
-                <h2 className={`text-2xl font-semibold mb-4 ${styles.textColor}`}>Account Settings</h2>
-                <Link to="/profile" className={`hover:underline block mb-2 ${styles.textColor}`}>
-                    Update Profile
+                <h2 className={`text-2xl font-semibold mb-4 ${styles.textColor}`}>Manage Your Account</h2>
+                <Link to="/settings" className={`hover:underline block mb-2 ${styles.textColor}`}>
+                    Update Profile Settings
                 </Link>
                 <Link to="/bookings" className={`hover:underline ${styles.textColor}`}>
                     Manage Bookings
