@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../actions/userActions';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import logo from '../../assets/images/logo.png';
+
 const Navbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user.currentUser);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = () => {
         dispatch(logoutUser());
@@ -48,13 +52,33 @@ const Navbar = () => {
     return (
         <nav className="bg-sand-100 p-4 shadow-lg">
             <div className="container mx-auto flex items-center justify-between">
-                <Link to="/" className="text-sky-900 text-xl font-bold hover:text-sky-300">
-                    Bifröst Bookings
-                </Link>
-                <div className="flex space-x-4">
+                <div className="flex items-center">
+                    <Link to="/">
+                        <img src={logo} alt="Bifröst Bookings Logo" className="h-10 w-auto mr-4" />
+                    </Link>
+                    <Link to="/" className="text-sky-900 text-xl font-bold hover:text-sky-300">
+                        Bifröst Bookings
+                    </Link>
+                </div>
+                <div className="md:hidden">
+                    <button onClick={() => setIsOpen(!isOpen)} className="text-sky-900">
+                        {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+                    </button>
+                </div>
+                <div className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
                     <Link to="/search" className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100">
                         Search Flights
                     </Link>
+                    {currentUser && (
+                        <>
+                            <Link to="/profile" className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100">
+                                Profile
+                            </Link>
+                            <Link to="/dashboard" className="text-sky-900 font-bold hover:text-sky-300 py-2 px-4 rounded border border-sky-900 hover:bg-sky-100">
+                                Dashboard
+                            </Link>
+                        </>
+                    )}
                     {loginActions}
                 </div>
             </div>
