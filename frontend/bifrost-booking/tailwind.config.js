@@ -12,6 +12,7 @@ module.exports = {
       'moss': '#00340A',
       'leather': '#7B4F3C',
       'sand': '#FFEAB4',
+      'sunrise': '#6c4861'
     },
     extend: {
       colors: {
@@ -93,10 +94,31 @@ module.exports = {
           900: '#7A2B0D',
           950: '#461502',
         },
+        'sunrise': {
+          50: '#F9F6F9',
+          100: '#F4EFF4',
+          200: '#EBDFEA',
+          300: '#DBC6D7',
+          400: '#C5A1BF',
+          500: '#B084A7',
+          600: '#99698C',
+          700: '#815574',
+          800: '#6C4861', // MAIN //
+          900: '#563B4E',
+          950: '#35222F',
+        },
       }
     },
   },
   plugins: [],
 }
+
+
+
+
+
+
+
+
 
 // "Fonts": { "HeadingFont": "Felix Titling", "SubheadingFont": "Felix Titling", "BodyFont": "Felix Titling" },
