@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import settingsCog from '../../assets/images/setting-cog.png';
+import donegalSunset from '../../assets/images/donegal-sunset.jpg';
 
 const Settings = () => {
     const dispatch = useDispatch();
@@ -92,95 +94,100 @@ const Settings = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-4xl font-bold mb-8">Settings</h1>
+        <div style={{ backgroundImage: `url(${donegalSunset})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+            <div className="container mx-auto px-4 py-8">
+                <div className="flex items-center mb-8">
+                    <img src={settingsCog} alt="Settings Cog" className="w-24 h-24 mr-4" />
+                    <h1 className="text-4xl text-sky-950 font-bold">Settings</h1>
+                </div>
 
-            <div className="bg-gray-100 rounded-lg shadow-md p-4 mb-8">
-                <h2 className="text-2xl font-bold mb-4">Update Info</h2>
-                <form onSubmit={handleSettingsSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
-                        <input
-                            type="text"
-                            id="firstName"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name</label>
-                        <input
-                            type="text"
-                            id="lastName"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="bg-sky-400 text-thunder-50 hover:bg-rain-600 hover:text-salmon-200 font-bold py-2 px-4 rounded">
-                        Update
-                    </button>
-                </form>
-            </div>
+                <div className="bg-sky-100 rounded-lg shadow-md p-6 mb-8">
+                    <h2 className="text-2xl text-sky-950 font-bold mb-4">Update Info</h2>
+                    <form onSubmit={handleSettingsSubmit}>
+                        <div className="mb-4">
+                            <label htmlFor="firstName" className="block text-sm font-medium text-sky-700">First Name</label>
+                            <input
+                                type="text"
+                                id="firstName"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                className="mt-1 block w-full px-3 py-2 border border-sky-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="lastName" className="block text-sm font-medium text-sky-700">Last Name</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                className="mt-1 block w-full px-3 py-2 border border-sky-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="email" className="block text-sm font-medium text-sky-700">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="mt-1 block w-full px-3 py-2 border border-sky-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="bg-sky-400 text-thunder-50 hover:bg-rain-600 hover:text-salmon-200 font-bold py-2 px-4 rounded">
+                            Update
+                        </button>
+                    </form>
+                </div>
 
-            <div className="bg-gray-100 rounded-lg shadow-md p-4">
-                <h2 className="text-2xl font-bold mb-4">Change Password</h2>
-                <form onSubmit={handlePasswordSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700">Current Password</label>
-                        <input
-                            type="password"
-                            id="currentPassword"
-                            name="currentPassword"
-                            value={passwordData.currentPassword}
-                            onChange={handlePasswordChange}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700">New Password</label>
-                        <input
-                            type="password"
-                            id="newPassword"
-                            name="newPassword"
-                            value={passwordData.newPassword}
-                            onChange={handlePasswordChange}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            value={passwordData.confirmPassword}
-                            onChange={handlePasswordChange}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="bg-sky-400 text-thunder-50 hover:bg-rain-600 hover:text-salmon-200 font-bold py-2 px-4 rounded">
-                        Change Password
-                    </button>
-                </form>
+                <div className="bg-sky-100 rounded-lg shadow-md p-6">
+                    <h2 className="text-2xl text-sky-950 font-bold mb-4">Change Password</h2>
+                    <form onSubmit={handlePasswordSubmit}>
+                        <div className="mb-4">
+                            <label htmlFor="currentPassword" className="block text-sm font-medium text-sky-700">Current Password</label>
+                            <input
+                                type="password"
+                                id="currentPassword"
+                                name="currentPassword"
+                                value={passwordData.currentPassword}
+                                onChange={handlePasswordChange}
+                                className="mt-1 block w-full px-3 py-2 border border-sky-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="newPassword" className="block text-sm font-medium text-sky-700">New Password</label>
+                            <input
+                                type="password"
+                                id="newPassword"
+                                name="newPassword"
+                                value={passwordData.newPassword}
+                                onChange={handlePasswordChange}
+                                className="mt-1 block w-full px-3 py-2 border border-sky-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-sky-700">Confirm Password</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                value={passwordData.confirmPassword}
+                                onChange={handlePasswordChange}
+                                className="mt-1 block w-full px-3 py-2 border border-sky-300 rounded-md shadow-sm focus:outline-none focus:ring-water focus:border-water"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="bg-sky-400 text-thunder-50 hover:bg-rain-600 hover:text-salmon-200 font-bold py-2 px-4 rounded">
+                            Change Password
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     )
