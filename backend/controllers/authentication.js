@@ -1,6 +1,7 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
 
+
 exports.registerUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
 
@@ -14,8 +15,8 @@ exports.registerUser = async (req, res) => {
             return res.status(400).json({ error: 'User already exists' });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({ firstName, lastName, email, password: hashedPassword });
+
+        const newUser = await User.create({ firstName, lastName, email, password });
 
         res.status(201).json(newUser);
     } catch (error) {
@@ -56,6 +57,7 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
 // (async () => {
 //     const email = 'ronniemyers@example.com'; // Replace with the actual email
 //     const user = await User.findOne({ where: { email } });
@@ -65,3 +67,5 @@ exports.loginUser = async (req, res) => {
 //         console.log('User not found');
 //     }
 // })();
+// console.log('Received password:', password);
+//         console.log('Stored hash:', user.password);
