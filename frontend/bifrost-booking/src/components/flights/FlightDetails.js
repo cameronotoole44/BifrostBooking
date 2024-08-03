@@ -10,7 +10,7 @@ const FlightDetails = () => {
     useEffect(() => {
         const fetchFlightDetails = async () => {
             try {
-                const response = await fetch(`/flights/${id}`);
+                const response = await fetch(`http://localhost:5000/flights/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -39,13 +39,14 @@ const FlightDetails = () => {
     }
 
     return (
-        <div>
-            <h1>Flight Details</h1>
-            <p><strong>Flight Number:</strong> {flight.flightNumber}</p>
-            <p><strong>Departure Time:</strong> {new Date(flight.departureTime).toLocaleString()}</p>
-            <p><strong>Arrival Time:</strong> {new Date(flight.arrivalTime).toLocaleString()}</p>
-            <p><strong>Departure City:</strong> {flight.departureCity}</p>
-            <p><strong>Arrival City:</strong> {flight.arrivalCity}</p>
+        <div className="p-4 bg-white shadow-md rounded-md">
+            <h1 className="text-2xl font-bold mb-4">Flight Details</h1>
+            <p className="text-sm"><strong>Flight Number:</strong> {flight.flightNumber}</p>
+            <p className="text-sm"><strong>Departure Time:</strong> {new Date(flight.departureTime).toLocaleString()}</p>
+            <p className="text-sm"><strong>Arrival Time:</strong> {new Date(flight.arrivalTime).toLocaleString()}</p>
+            <p className="text-sm"><strong>Departure Airport:</strong> {flight.departureAirport}</p>
+            <p className="text-sm"><strong>Arrival Airport:</strong> {flight.arrivalAirport}</p>
+            <p className="text-sm"><strong>Price:</strong> ${flight.price}</p>
         </div>
     );
 };

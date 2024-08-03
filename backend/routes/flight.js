@@ -26,22 +26,18 @@ router.get('/', async (req, res) => {
 router.get('/search', async (req, res) => {
     try {
         const {
-            departureCity,
-            arrivalCity,
-            departureDate,
-            returnDate,
-            oneWay,
-            nonStop,
+            departureAirport,
+            arrivalAirport,
+            departureTime,
+            arrivalTime,
         } = req.query;
 
         const flights = await Flight.findAll({
             where: {
-                ...(departureCity && { departureCity }),
-                ...(arrivalCity && { arrivalCity }),
-                ...(departureDate && { departureDate: new Date(departureDate) }),
-                ...(returnDate && { returnDate: new Date(returnDate) }),
-                ...(oneWay !== undefined && { oneWay: oneWay === 'true' }),
-                ...(nonStop !== undefined && { nonStop: nonStop === 'true' }),
+                ...(departureAirport && { departureAirport }),
+                ...(arrivalAirport && { arrivalAirport }),
+                ...(departureTime && { departureTime: new Date(departureTime) }),
+                ...(arrivalTime && { arrivalTime: new Date(arrivalTime) }),
             },
         });
 
