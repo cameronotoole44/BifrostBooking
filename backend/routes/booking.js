@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Booking } = require('../models');
+const { Flight } = require('../models');
 
 // CREATE BOOKING //
 router.post('/', async (req, res) => {
@@ -14,6 +15,12 @@ router.post('/', async (req, res) => {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
+        const flight = await Flight.findByPk(flightId);
+
+        if (!flight) {
+            return res.status(404).json({ error: 'Flight not found' });
+        }
+
         const newBooking = await Booking.create({
             userId,
             flightId,
@@ -22,7 +29,10 @@ router.post('/', async (req, res) => {
 
         console.log('New booking created:', newBooking);
 
-        res.status(201).json(newBooking);
+        res.status(201).json({
+            ...newBooking.dataValues,
+            flight
+        });
     } catch (error) {
         console.error('Error creating booking:', error);
         res.status(500).json({ error: 'Internal server error' });

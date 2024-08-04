@@ -5,7 +5,7 @@ import SettingsPage from './components/pages/Settings';
 import Dashboard from './components/pages/dashboard';
 import SearchFlights from './components/flights/Search';
 import FlightDetails from './components/flights/FlightDetails';
-import CreateBooking from './components/bookings/CreateBooking';
+import UserBookings from './components/bookings/UserBookings';
 import EditBooking from './components/bookings/EditBooking';
 import LoginPage from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/search" element={<SearchFlights />} />
         <Route path="/flights/:id" element={<FlightDetails />} />
-        <Route path="/bookings" element={<CreateBooking />} />
+        <Route path="/bookings" element={<UserBookings />} />
         <Route path="/bookings/:bookingId" element={<EditBooking />} />
         <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/auth/register" element={<Register />} />

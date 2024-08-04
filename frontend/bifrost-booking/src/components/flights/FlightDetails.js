@@ -46,7 +46,11 @@ const FlightDetails = () => {
             const response = await fetch("http://localhost:5000/bookings", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ flightId: id, passengerName }),
+                body: JSON.stringify({
+                    userId: currentUser.id,
+                    flightId: id,
+                    bookingDate: new Date().toISOString()
+                }),
             });
             if (!response.ok) {
                 throw new Error("Booking creation failed");
@@ -61,6 +65,7 @@ const FlightDetails = () => {
             setBookingStatus({ type: "error", message: error.message });
         }
     };
+
 
     if (loading) {
         return (
