@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store';
 import HomePage from './components/pages/Home';
 import SettingsPage from './components/pages/Settings';
 import Dashboard from './components/pages/dashboard';
 import SearchFlights from './components/flights/Search';
+import FlightDetails from './components/flights/FlightDetails';
 import CreateBooking from './components/bookings/CreateBooking';
 import EditBooking from './components/bookings/EditBooking';
 import LoginPage from './components/auth/Login';
@@ -17,24 +16,23 @@ import './App.css';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/search" element={<SearchFlights />} />
-          <Route path="/bookings" element={<CreateBooking />} />
-          <Route path="/bookings/:bookingId" element={<EditBooking />} />
-          <Route path="/auth/login" element={<LoginPage />} />
-          <Route path="/auth/register" element={<Register />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-        <Footer />
-      </Router>
-    </Provider>
-  )
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/search" element={<SearchFlights />} />
+        <Route path="/flights/:id" element={<FlightDetails />} />
+        <Route path="/bookings" element={<CreateBooking />} />
+        <Route path="/bookings/:bookingId" element={<EditBooking />} />
+        <Route path="/auth/login" element={<LoginPage />} />
+        <Route path="/auth/register" element={<Register />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+      <Footer />
+    </Router>
+  );
 };
 
 export default App;

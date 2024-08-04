@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
 import WelcomeGif from '../../assets/images/bifrost-bookings.gif';
 
 const Home = () => {
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="flex flex-col bg-leather-200 md:flex-row items-center justify-between rounded-lg shadow-md p-4">
+            <div className="flex flex-col bg-smoke-200 md:flex-row items-center justify-between rounded-lg shadow-md p-4">
                 <div className="md:w-1/2 mb-4 md:mb-0">
                     <h1 className="text-4xl font-bold mb-2 text-sky-950">Welcome to Bifröst Bookings!</h1>
                     <p className="text-lg mb-4 text-sky-900">Book flights seamlessly with our easy-to-use platform.</p>
@@ -22,11 +21,11 @@ const Home = () => {
             <div className="mt-8">
                 <h2 className="text-2xl font-bold mb-4 text-cloud-950">Why Choose Us?</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-leather-200 rounded-lg shadow-md p-4">
+                    <div className="bg-smoke-200 rounded-lg shadow-md p-4">
                         <h3 className="text-xl font-bold mb-2 text-sky-900">Wide Selection of Flights</h3>
                         <p className="text-sky-950">Find flights to various destinations around the world.</p>
                     </div>
-                    <div className="bg-leather-200 rounded-lg shadow-md p-4">
+                    <div className="bg-smoke-200 rounded-lg shadow-md p-4">
                         <h3 className="text-xl font-bold mb-2 text-sky-900">Secure Booking Process</h3>
                         <p className="text-sky-950">Book your flights securely.</p>
                     </div>
