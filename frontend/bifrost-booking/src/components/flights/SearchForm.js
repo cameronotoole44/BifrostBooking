@@ -61,7 +61,7 @@ const SearchForm = ({ onSearch }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">
+                <label className="block text-sm font-medium text-smoke-950">
                     Departure Airport:
                 </label>
                 <Select
@@ -73,7 +73,7 @@ const SearchForm = ({ onSearch }) => {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">
+                <label className="block text-sm font-medium text-smoke-950">
                     Arrival Airport:
                 </label>
                 <Select
@@ -85,31 +85,31 @@ const SearchForm = ({ onSearch }) => {
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">
+                <label className="block text-sm font-medium text-smoke-950">
                     Departure Date:
                 </label>
                 <DatePicker
                     selected={departureDate}
                     onChange={setDepartureDate}
                     dateFormat="yyyy/MM/dd"
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
+                    className="mt-1 block w-full px-3 py-2 border border-smoke-400 rounded-md shadow-sm focus:outline-none focus:ring-smoke-500 focus:border-smoke-500"
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">
+                <label className="block text-sm font-medium text-smoke-950">
                     Return Date:
                 </label>
                 <DatePicker
                     selected={returnDate}
                     onChange={setReturnDate}
                     dateFormat="yyyy/MM/dd"
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
+                    className="mt-1 block w-full px-3 py-2 border border-smoke-400 rounded-md shadow-sm focus:outline-none focus:ring-smoke-500 focus:border-smoke-500"
                     placeholderText="Select a return date"
                     isClearable
                 />
             </div>
             <div className="mb-4">
-                <label className="block text-sm font-medium text-leather-950">
+                <label className="block text-sm font-medium text-smoke-950">
                     Passengers:
                 </label>
                 <input
@@ -118,12 +118,12 @@ const SearchForm = ({ onSearch }) => {
                     onChange={(e) => setPassengers(parseInt(e.target.value, 10))}
                     min="1"
                     max="10"
-                    className="mt-1 block w-full px-3 py-2 border border-leather-400 rounded-md shadow-sm focus:outline-none focus:ring-leather-500 focus:border-leather-500"
+                    className="mt-1 block w-full px-3 py-2 border border-smoke-400 rounded-md shadow-sm focus:outline-none focus:ring-smoke-500 focus:border-smoke-500"
                 />
             </div>
             <button
                 type="submit"
-                className="w-full px-3 py-2 bg-sand-950 text-sand-50 font-medium rounded-md shadow-sm hover:bg-sand-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sand-500"
+                className="w-full px-3 py-2 bg-sunrise-500 text-salmon-100 font-medium rounded-md shadow-sm hover:bg-smoke-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-smoke-500"
             >
                 Search
             </button>

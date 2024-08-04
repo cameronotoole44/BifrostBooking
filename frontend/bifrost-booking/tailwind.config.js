@@ -7,7 +7,7 @@ module.exports = {
       current: 'currentColor',
       'coal': '#000',
       'smoke': '#808080',
-      'cloud': '#565584',
+      'cloud': '#3e5576',
       'salmon': '#FF9C9C',
       'sky': '#50C7FF',
       'moss': '#00340A',
