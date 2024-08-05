@@ -22,12 +22,20 @@ export const searchFlights = (searchParams) => async (dispatch) => {
 export const getFlights = () => async (dispatch) => {
     try {
         const response = await fetch('http://localhost:5000/flights');
+        if (!response.ok) {
+            throw new Error('Failed to fetch flights');
+        }
         const data = await response.json();
+
+        localStorage.setItem('flights', JSON.stringify(data));
+
         dispatch({ type: GET_FLIGHTS, payload: data });
     } catch (error) {
         console.error('Failed to fetch flights', error);
+        dispatch({ type: SEARCH_FLIGHTS_FAILURE, error: error.message });
     }
 };
+
 
 export const createFlight = (flightData) => async (dispatch) => {
     try {
