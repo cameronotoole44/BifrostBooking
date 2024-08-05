@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { searchFlights } from "../../actions/flightActions";
 
 const airportOptions = [
     // US AIRPORTS //
@@ -37,25 +39,28 @@ const airportOptions = [
     { value: "YXE", label: "Saskatoon John G. Diefenbaker International Airport, Saskatoon" },
     { value: "YQR", label: "Regina International Airport, Regina" },
     { value: "YTZ", label: "Billy Bishop Toronto City Airport, Toronto" },
-    { value: "YVR", label: "Victoria International Airport, Victoria" },
+    { value: "YYJ", label: "Victoria International Airport, Victoria" },
 ];
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = () => {
     const [departureAirport, setDepartureAirport] = useState(null);
     const [arrivalAirport, setArrivalAirport] = useState(null);
     const [departureDate, setDepartureDate] = useState(new Date());
     const [returnDate, setReturnDate] = useState(null);
     const [passengers, setPassengers] = useState(1);
 
+    const dispatch = useDispatch();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSearch({
+
+        dispatch(searchFlights({
             departureAirport: departureAirport?.value,
             arrivalAirport: arrivalAirport?.value,
             departureDate,
             returnDate,
             passengers,
-        });
+        }));
     };
 
     return (
