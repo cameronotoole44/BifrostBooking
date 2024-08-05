@@ -2,10 +2,12 @@ import {
     SEARCH_FLIGHTS_REQUEST,
     SEARCH_FLIGHTS_SUCCESS,
     SEARCH_FLIGHTS_FAILURE,
-    GET_FLIGHTS,
     CREATE_FLIGHT,
     UPDATE_FLIGHT,
-    DELETE_FLIGHT
+    DELETE_FLIGHT,
+    FETCH_FLIGHT_BY_ID_REQUEST,
+    FETCH_FLIGHT_BY_ID_SUCCESS,
+    FETCH_FLIGHT_BY_ID_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -20,24 +22,19 @@ const flightReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
-                error: null
+                error: null,
             };
         case SEARCH_FLIGHTS_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                flights: action.payload
+                flights: action.payload,
             };
         case SEARCH_FLIGHTS_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.error
-            };
-        case GET_FLIGHTS:
-            return {
-                ...state,
-                flights: action.payload,
+                error: action.error,
             };
         case CREATE_FLIGHT:
             return {
@@ -55,6 +52,24 @@ const flightReducer = (state = initialState, action) => {
             return {
                 ...state,
                 flights: state.flights.filter((flight) => flight.id !== action.payload),
+            };
+        case FETCH_FLIGHT_BY_ID_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        case FETCH_FLIGHT_BY_ID_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                flights: [...state.flights, action.payload],
+            };
+        case FETCH_FLIGHT_BY_ID_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
             };
         default:
             return state;

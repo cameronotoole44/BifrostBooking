@@ -2,10 +2,12 @@ import {
     SEARCH_FLIGHTS_REQUEST,
     SEARCH_FLIGHTS_SUCCESS,
     SEARCH_FLIGHTS_FAILURE,
-    GET_FLIGHTS,
     CREATE_FLIGHT,
     UPDATE_FLIGHT,
     DELETE_FLIGHT,
+    FETCH_FLIGHT_BY_ID_REQUEST,
+    FETCH_FLIGHT_BY_ID_SUCCESS,
+    FETCH_FLIGHT_BY_ID_FAILURE,
 } from '../actions/actionTypes';
 
 export const searchFlights = (searchParams) => async (dispatch) => {
@@ -18,24 +20,6 @@ export const searchFlights = (searchParams) => async (dispatch) => {
         dispatch({ type: SEARCH_FLIGHTS_FAILURE, error });
     }
 };
-
-export const getFlights = () => async (dispatch) => {
-    try {
-        const response = await fetch('http://localhost:5000/flights');
-        if (!response.ok) {
-            throw new Error('Failed to fetch flights');
-        }
-        const data = await response.json();
-
-        localStorage.setItem('flights', JSON.stringify(data));
-
-        dispatch({ type: GET_FLIGHTS, payload: data });
-    } catch (error) {
-        console.error('Failed to fetch flights', error);
-        dispatch({ type: SEARCH_FLIGHTS_FAILURE, error: error.message });
-    }
-};
-
 
 export const createFlight = (flightData) => async (dispatch) => {
     try {
@@ -75,5 +59,19 @@ export const deleteFlight = (flightId) => async (dispatch) => {
         dispatch({ type: DELETE_FLIGHT, payload: flightId });
     } catch (error) {
         console.error('Failed to delete flight', error);
+    }
+};
+
+export const fetchFlightById = (flightId) => async (dispatch) => {
+    dispatch({ type: FETCH_FLIGHT_BY_ID_REQUEST });
+    try {
+        const response = await fetch(`http://localhost:5000/flights/${flightId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch flight');
+        }
+        const data = await response.json();
+        dispatch({ type: FETCH_FLIGHT_BY_ID_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: FETCH_FLIGHT_BY_ID_FAILURE, error: error.message });
     }
 };
