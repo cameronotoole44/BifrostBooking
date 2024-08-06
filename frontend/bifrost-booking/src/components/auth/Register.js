@@ -41,6 +41,7 @@ const Register = () => {
     };
 
     return (
+
         <div className="min-h-screen flex items-center justify-center bg-sky-900">
             <div className="bg-sky-500 p-8 rounded shadow-lg max-w-md w-full">
                 <h2 className="text-2xl font-bold mb-6 text-center text-sky-950">Create an Account</h2>
