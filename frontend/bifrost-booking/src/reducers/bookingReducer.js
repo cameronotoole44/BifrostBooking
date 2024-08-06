@@ -18,7 +18,7 @@ const bookingReducer = (state = initialState, action) => {
         case FETCH_BOOKINGS_REQUEST:
             return { ...state, loading: true };
         case FETCH_BOOKINGS_SUCCESS:
-            return { ...state, loading: false, bookings: action.payload };
+            return { ...state, loading: false, bookings: Array.isArray(action.payload) ? action.payload : [] };
         case FETCH_BOOKINGS_FAILURE:
             return { ...state, loading: false, error: action.payload };
         case DELETE_BOOKING_REQUEST:

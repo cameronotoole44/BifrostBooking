@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     arrivalTime: { type: DataTypes.DATE, allowNull: true },
     duration: { type: DataTypes.STRING, allowNull: false },
     price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-    seats: { type: DataTypes.INTEGER, allowNull: false }, // New seats column
+    seats: { type: DataTypes.INTEGER, allowNull: false },
   }, {
     sequelize,
     modelName: 'Flight',
