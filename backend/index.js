@@ -26,6 +26,7 @@ app.use('/bookings', bookingRoutes);
 app.use('/flights', flightRoutes);
 // app.use('/admin', adminRoutes);
 
+
 // HOME/DEFAULT LANDING //
 app.get('/', (req, res) => {
     res.send('Hello Team!');
