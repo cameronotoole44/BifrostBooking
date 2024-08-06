@@ -30,7 +30,7 @@ const Navbar = () => {
         setIsProfileMenuOpen(false);
     };
 
-    // Links for unauthenticated users
+
     let loginActions = (
         <div className="flex space-x-4">
             <Link
@@ -50,18 +50,10 @@ const Navbar = () => {
         </div>
     );
 
-    // Links for authenticated users
+
     if (currentUser) {
         loginActions = (
             <>
-                {/* Displaying Settings and Dashboard Links on Mobile and Desktop */}
-                <Link
-                    to="/settings"
-                    className="block text-sky-900 font-medium hover:text-sky-300 py-2 px-4 rounded-md hover:bg-smoke-500"
-                    onClick={closeMenu}
-                >
-                    Settings
-                </Link>
                 <Link
                     to="/dashboard"
                     className="block text-sky-900 font-medium hover:text-sky-300 py-2 px-4 rounded-md hover:bg-smoke-500"
