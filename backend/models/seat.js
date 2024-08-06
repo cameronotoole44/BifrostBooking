@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
     Seat.init({
         flightId: { type: DataTypes.INTEGER, allowNull: false },
         seatNumber: { type: DataTypes.STRING, allowNull: false },
-        status: { type: DataTypes.ENUM('available', 'booked', 'reserved'), allowNull: false, defaultValue: 'available' },
+        status: { type: DataTypes.ENUM('available', 'reserved'), allowNull: false, defaultValue: 'available' },
     }, {
         sequelize,
         modelName: 'Seat',
