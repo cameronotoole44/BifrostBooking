@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Booking, Flight } = require('../models');
-const { Op } = require('sequelize');
-const moment = require('moment');
+
 
 // CREATE BOOKING //
 router.post('/', async (req, res) => {
@@ -53,43 +52,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// UPCOMING BOOKINGS //
-router.get('/upcoming-bookings', async (req, res) => {
-    try {
-        const userId = parseInt(req.query.userId, 10); // Ensure userId is an integer
-        console.log('Received userId:', userId); // Debugging log
 
-        if (isNaN(userId)) {
-            return res.status(400).json({ error: 'Valid User ID is required' });
-        }
-
-        const currentDate = moment().toDate();
-
-        const upcomingBookings = await Booking.findAll({
-            where: {
-                userId: userId,
-            },
-            include: [
-                {
-                    model: Flight,
-                    as: 'flight',
-                    required: true,
-                    where: {
-                        departureTime: {
-                            [Op.gt]: currentDate,
-                        },
-                    },
-                },
-            ],
-            order: [[{ model: Flight, as: 'flight' }, 'departureTime', 'ASC']],
-        });
-
-        res.status(200).json(upcomingBookings);
-    } catch (error) {
-        console.error('Error fetching upcoming bookings:', error);
-        res.status(500).json({ error: error.message });
-    }
-});
 
 // GET SINGLE BOOKING //
 router.get('/:id', async (req, res) => {
