@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const { sequelize, Booking } = require('./models');
 const weatherRoutes = require('./routes/weather');
 const authRoutes = require('./routes/auth');
@@ -20,6 +22,17 @@ app.use(cors({
     origin: 'http://localhost:3000'
 }));
 app.use(express.json());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 // SET AT ONE DAY //
+    }
+}));
+
 
 // ROUTES //
 app.use('/auth', authRoutes);

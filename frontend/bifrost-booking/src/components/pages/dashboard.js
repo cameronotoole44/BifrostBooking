@@ -119,7 +119,6 @@ const Dashboard = () => {
     const upcomingBookings = getUpcomingBookings();
 
     // CALCULATE TOTAL DISTANCE TRAVELED // 
-    // SINCE I ONLY HAVE DURATION OF FLIGHT AS DATA, I CREATED THE FUNCTION TO ESTIMATE THE TIME BASED ON FLIGHT SPEED // MIGHT GO BACK AND ADD THE DATA TO DB // THIS WORKS FOR NOW //
     const averageSpeedKmH = 800; // AVERAGE COMMERCIAL FLIGHT SPEED //
     const now = new Date(); // CURRENT TIME //
 
@@ -127,17 +126,13 @@ const Dashboard = () => {
         const departureTime = new Date(booking.flight.departureTime);
         const arrivalTime = new Date(booking.flight.arrivalTime);
 
-        // HAS THE FLIGHT HAPPENED YET //
         if (arrivalTime <= now) {
             const flightDurationHours = (arrivalTime - departureTime) / (1000 * 60 * 60);
             return total + (flightDurationHours * averageSpeedKmH || 0);
         }
 
-        // RETURN TOTAL DISTANCE WITHOUT CALCULATING FUTURE FLIGHTS //
         return total;
     }, 0);
-
-
 
     // CALCULATES MOST FREQUENT DESTINATION //
     const destinationCount = bookings.reduce((acc, booking) => {
@@ -147,7 +142,7 @@ const Dashboard = () => {
     }, {});
 
     const frequentDestination = Object.keys(destinationCount).reduce((a, b) =>
-        destinationCount[a] > destinationCount[b] ? a : b
+        destinationCount[a] > destinationCount[b] ? a : b, 'None'
     );
 
     if (!currentUser) {
@@ -254,6 +249,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
 
 
 

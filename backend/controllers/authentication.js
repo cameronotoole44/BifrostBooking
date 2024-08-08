@@ -1,7 +1,6 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
 
-
 exports.registerUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
 
@@ -15,10 +14,9 @@ exports.registerUser = async (req, res) => {
             return res.status(400).json({ error: 'User already exists' });
         }
 
+        await User.create({ firstName, lastName, email, password });
 
-        const newUser = await User.create({ firstName, lastName, email, password });
-
-        res.status(201).json(newUser);
+        res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error('Error during registration:', error);
         res.status(500).json({ error: 'Internal server error' });
@@ -35,13 +33,17 @@ exports.loginUser = async (req, res) => {
     try {
         const user = await User.findOne({ where: { email } });
         if (!user) {
-            return res.status(401).json({ error: 'Invalid email' });
+            return res.status(401).json({ error: 'Invalid email or password' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ error: 'Invalid password' });
+            return res.status(401).json({ error: 'Invalid email or password' });
         }
+
+
+        req.session.userId = user.id;
+        req.session.isAuthenticated = true;
 
         res.status(200).json({
             message: 'Login successful',
@@ -57,6 +59,17 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+exports.logoutUser = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Could not log out' });
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).json({ message: 'Logout successful' });
+    });
+};
+
 
 // (async () => {
 //     const email = 'ronniemyers@example.com'; // Replace with the actual email
