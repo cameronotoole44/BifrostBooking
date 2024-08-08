@@ -11,6 +11,7 @@ const FlightDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [bookingStatus, setBookingStatus] = useState(null);
+    const [selectedSeat, setSelectedSeat] = useState(null);
     const { currentUser } = useCurrentUser();
     const navigate = useNavigate();
 
@@ -42,20 +43,35 @@ const FlightDetails = () => {
 
     const handleCreateBooking = async (e) => {
         e.preventDefault();
+        if (!selectedSeat) {
+            setBookingStatus({ type: "error", message: "Please select a seat" });
+            return;
+        }
+        const requestData = {
+            userId: currentUser.id,
+            flightId: id,
+            seatNumber: selectedSeat,
+            bookingDate: new Date().toISOString()
+        };
+        console.log('Request Data:', requestData);
+
         try {
             const response = await fetch("http://localhost:5000/bookings", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    userId: currentUser.id,
-                    flightId: id,
-                    bookingDate: new Date().toISOString()
-                }),
+                body: JSON.stringify(requestData),
             });
+
+            // Read the response body once
+            const responseData = await response.json();
+
+            console.log('Response Status:', response.status);
+            console.log('Response Data:', responseData);
+
             if (!response.ok) {
-                throw new Error("Booking creation failed");
+                throw new Error(responseData.message || "Booking creation failed");
             }
-            const data = await response.json();
+
             setBookingStatus({
                 type: "success",
                 message: "Booking created successfully!",
@@ -65,6 +81,8 @@ const FlightDetails = () => {
             setBookingStatus({ type: "error", message: error.message });
         }
     };
+
+
 
     if (loading) {
         return (
@@ -117,7 +135,7 @@ const FlightDetails = () => {
                     </p>
                 </div>
 
-                <FlightSeatPicker />
+                <FlightSeatPicker flightId={id} setSelectedSeat={setSelectedSeat} />
 
                 <form onSubmit={handleCreateBooking} className="mt-6">
                     <h2 className="text-xl font-bold mb-4 text-smoke-900">
@@ -142,7 +160,7 @@ const FlightDetails = () => {
                     </button>
                     {bookingStatus && (
                         <p
-                            className={`mt-4 text-center ${bookingStatus.type === "error" ? "text-red-500" : "text-green-500"
+                            className={`mt-4 text-center ${bookingStatus.type === "error" ? "text-salmon-500" : "text-moss-500"
                                 }`}
                         >
                             {bookingStatus.message}

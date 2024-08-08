@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-const FlightSeatPicker = ({ flightId }) => {
+const FlightSeatPicker = ({ flightId, setSelectedSeat }) => {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seatData, setSeatData] = useState([]);
 
     useEffect(() => {
-        // Fetch seat data for the specific flight
         const fetchSeatData = async () => {
             try {
-                const response = await fetch(`/api/seats?flightId=${flightId}`); // Adjust the endpoint as needed
+                const response = await fetch(`http://localhost:5000/seats?flightId=${flightId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch seat data');
+                }
                 const data = await response.json();
                 setSeatData(data);
             } catch (error) {
@@ -16,15 +18,25 @@ const FlightSeatPicker = ({ flightId }) => {
             }
         };
 
-        fetchSeatData();
+        if (flightId) {
+            fetchSeatData();
+        }
     }, [flightId]);
+
+    useEffect(() => {
+        if (selectedSeats.length > 0) {
+            setSelectedSeat(selectedSeats[0]);
+        } else {
+            setSelectedSeat(null);
+        }
+    }, [selectedSeats, setSelectedSeat]);
 
     const toggleSeatSelection = (seat) => {
         setSelectedSeats((prevSelectedSeats) => {
             if (prevSelectedSeats.includes(seat)) {
                 return prevSelectedSeats.filter((s) => s !== seat);
             } else {
-                return [...prevSelectedSeats, seat];
+                return [seat];
             }
         });
     };
@@ -77,6 +89,8 @@ const FlightSeatPicker = ({ flightId }) => {
 };
 
 export default FlightSeatPicker;
+
+
 
 
 
