@@ -11,6 +11,16 @@ Welcome to **Bifröst Bookings** – your gateway to seamless flight reservation
 - **Database:** PostgreSQL
 - **APIs:** Weatherbit API (for weather data)
 
+## Project Architecture
+
+### Redux State Management
+
+![Redux State Management](assets/state.png)
+
+### Database ERD
+
+![Database ERD](assets/BifrostDB.png)
+
 ## Current Features
 
 - **User Authentication:** Secure registration and login.
@@ -29,7 +39,6 @@ Welcome to **Bifröst Bookings** – your gateway to seamless flight reservation
 - **Multi-language Support:** Expanding to include multiple languages.
 - **Mobile Application:** Developing a mobile app version of Bifröst Bookings.
 - **Notifications:** Adding features for timely flight and booking alerts.
-- **Payment Integration:** Implementing payment options (less likely).
 
 ---
 
