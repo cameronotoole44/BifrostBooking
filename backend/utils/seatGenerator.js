@@ -6,13 +6,13 @@ async function generateSeats() {
         console.log(`Found ${flights.length} flights.`);
 
         for (const flight of flights) {
-            const totalSeats = parseInt(flight.seats, 10); // Convert STRING to INTEGER
+            const totalSeats = parseInt(flight.seats, 10);
             console.log(`Generating seats for flight ${flight.id} with ${totalSeats} total seats.`);
             const seats = [];
 
-            for (let row = 1; row <= Math.ceil(totalSeats / 6); row++) { // Use Math.ceil to handle seat count properly
+            for (let row = 1; row <= Math.ceil(totalSeats / 6); row++) {
                 for (let col = 0; col < 6; col++) {
-                    if (seats.length >= totalSeats) break; // Stop when reaching total seats
+                    if (seats.length >= totalSeats) break;
                     const seatNumber = `${row}${String.fromCharCode(65 + col)}`;
                     seats.push({
                         flightId: flight.id,
@@ -33,5 +33,3 @@ async function generateSeats() {
 }
 
 module.exports = { generateSeats };
-
-
