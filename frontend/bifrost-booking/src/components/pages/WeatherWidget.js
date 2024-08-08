@@ -28,15 +28,15 @@ const WeatherWidget = ({ city }) => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="weather-widget p-4 rounded-lg shadow-md bg-white flex flex-col items-center">
-            <h4 className="font-semibold text-lg mb-2">{weatherData.city_name}</h4>
+        <div className="weather-widget p-4 rounded-lg shadow-md flex flex-col items-center">
+            <h4 className="font-semibold text-smoke-950 text-lg mb-2">{weatherData.city_name}</h4>
             <div className="flex items-center justify-center">
                 <img
                     src={`https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`}
                     alt={weatherData.weather.description}
-                    className="w-10 h-10 mr-2"
+                    className="w-20 h-20 mr-2"
                 />
-                <p className="text-xl">{weatherData.temp}°C</p>
+                <p className="text-xl text-smoke-950 font-semibold">{weatherData.temp}°C</p>
             </div>
             <p>{weatherData.weather.description}</p>
         </div>
