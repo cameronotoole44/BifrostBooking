@@ -4,6 +4,7 @@ module.exports = (sequelize) => {
     class Seat extends Model {
         static associate(models) {
             Seat.belongsTo(models.Flight, { foreignKey: 'flightId', as: 'flight' });
+            Seat.hasOne(models.Booking, { foreignKey: 'seatNumber', as: 'booking' });
         }
     }
 

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Booking, Flight } = require('../models');
-
+const { Booking, Flight, Seat } = require('../models');
 
 // CREATE BOOKING //
 router.post('/', async (req, res) => {
@@ -9,23 +8,35 @@ router.post('/', async (req, res) => {
     console.log('Request body:', req.body);
 
     try {
-        const { userId, flightId, bookingDate } = req.body;
+        const { userId, flightId, seatNumber, bookingDate } = req.body;
 
-        if (!userId || !flightId || !bookingDate) {
+        if (!userId || !flightId || !seatNumber || !bookingDate) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
         const flight = await Flight.findByPk(flightId);
-
         if (!flight) {
             return res.status(404).json({ error: 'Flight not found' });
+        }
+
+        const seat = await Seat.findOne({ where: { seatNumber, flightId } });
+        if (!seat) {
+            return res.status(404).json({ error: 'Seat not found' });
+        }
+
+        if (seat.status === 'reserved') {
+            return res.status(400).json({ error: 'Seat is already reserved' });
         }
 
         const newBooking = await Booking.create({
             userId,
             flightId,
+            seatNumber,
             bookingDate,
         });
+
+        seat.status = 'reserved';
+        await seat.save();
 
         console.log('New booking created:', newBooking);
 
@@ -39,6 +50,8 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+
 // GET ALL BOOKINGS //
 router.get('/', async (req, res) => {
     try {
@@ -51,8 +64,6 @@ router.get('/', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-
-
 
 // GET SINGLE BOOKING //
 router.get('/:id', async (req, res) => {
