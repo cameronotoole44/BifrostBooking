@@ -4,34 +4,32 @@
 
 Welcome to **Bifröst Bookings** – your gateway to seamless flight reservations! Inspired by the legendary rainbow bridge from Norse mythology, Bifröst, this app bridges the gap between travelers and their dream destinations with ease and efficiency.
 
-## Inspiration
+## Tech Stack
 
-**Bifröst Bookings** emerged from a blend of my passion for full-stack development and the desire to alleviate the hassles of flight booking. Using React, Redux, and PostgreSQL, I've crafted a platform that transforms the booking experience with a sleek interface and intuitive design, ensuring your journey starts with a smile.
+- **Frontend:** React, Redux
+- **Backend:** Node.js, Express
+- **Database:** PostgreSQL
+- **APIs:** Weatherbit API (for weather data)
 
 ## Current Features
 
-- **User Authentication:** Enjoy secure and hassle-free registration and login, safeguarding your travel plans.
-- **User Profiles:** Manage your bookings with ease, making edits as needed.
-- **Flight Search:** Effortlessly search for flights by departure city, arrival city, dates, and passenger count.
-- **Booking Management:** Handle your bookings with basic CRUD operations for total control.
+- **User Authentication:** Secure registration and login.
+- **User Profiles:** Manage your bookings and edit details.
+- **Flight Search:** Search for flights by departure city, arrival city, dates, and passenger count.
+- **Booking Management:** Perform basic CRUD operations on your bookings.
 
 ## Currently Working On
 
-**Bifröst Bookings** Current development highlights include:
-
-- **Admin Dashboard:** Crafting a powerful panel for managing flights, bookings, and users with ease.
-- **User Dashboard:** Building a user-friendly profile homepage for easy navigation, settings updates, and booking management.
-- **Enhanced Search:** Boosting search functionality for accurate, speedy results, exploring options like the Amadeus API or generating flights with the Faker library.
-- **UI/UX Enhancements:** Always refining the design and usability to ensure a delightful user journey (CSS wizards, tips are welcome -\_-).
+- **Admin Dashboard:** Developing a comprehensive panel for managing flights, bookings, and users.
+- **Enhanced Search:** Improving search functionality for more accurate results. Currently, the app uses randomly generated flight data for flights from Canada and the United States. Future enhancements will explore options like the Amadeus API to provide real, accurate flight information.
+- **UI/UX Enhancements:** Continuously refining design and usability for an improved user experience (CSS wizards, tips are welcome -\_-).
 
 ## Future Ideas
 
-Looking ahead, **Bifröst Bookings** envisions:
-
-- **Multi-language Support:** Catering to a global audience with diverse language options.
-- **Mobile Application:** Bringing the power of Bifröst to your fingertips with a mobile app.
-- **Notifications:** Keeping you updated with timely flight and booking alerts.
-- **Payment Integration:** Streamlining the booking process with seamless payment options (less likely at the moment)
+- **Multi-language Support:** Expanding to include multiple languages.
+- **Mobile Application:** Developing a mobile app version of Bifröst Bookings.
+- **Notifications:** Adding features for timely flight and booking alerts.
+- **Payment Integration:** Implementing payment options (less likely).
 
 ---
 
