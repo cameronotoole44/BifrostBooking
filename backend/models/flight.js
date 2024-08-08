@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   class Flight extends Model {
     static associate(models) {
       Flight.hasMany(models.Booking, { foreignKey: 'flightId', as: 'bookings' });
-      Flight.hasMany(models.Seat, { foreignKey: 'flightId', as: 'seats' });
+      Flight.hasMany(models.Seat, { foreignKey: 'flightId', as: 'flightSeats' }); // Renamed association
     }
   }
 
@@ -17,6 +17,7 @@ module.exports = (sequelize) => {
     arrivalTime: { type: DataTypes.DATE, allowNull: true },
     duration: { type: DataTypes.STRING, allowNull: false },
     price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
+    seats: { type: DataTypes.STRING, allowNull: false },
     arrivalCity: { type: DataTypes.STRING, allowNull: false },
   }, {
     sequelize,
