@@ -62,7 +62,7 @@ const FlightDetails = () => {
                 body: JSON.stringify(requestData),
             });
 
-            // Read the response body once
+
             const responseData = await response.json();
 
             console.log('Response Status:', response.status);
