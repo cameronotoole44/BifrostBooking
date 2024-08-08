@@ -1,99 +1,75 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBookings } from "../../actions/bookingActions";
+import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import cloudBackground from '../../assets/images/clouds.jpg';
 
 const UserBookings = () => {
-    const [bookings, setBookings] = useState([]);
-    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+    const { bookings = [], loading, error } = useSelector(state => state.bookings || {});
 
     useEffect(() => {
-        const fetchBookings = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/bookings");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch bookings");
-                }
-                const data = await response.json();
-                setBookings(data);
-            } catch (error) {
-                setError("Failed to fetch bookings");
-            }
-        };
-
-        fetchBookings();
-    }, []);
-
-    const handleDeleteBooking = async (bookingId) => {
-        try {
-            const response = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
-                method: "DELETE",
-            });
-            if (!response.ok) {
-                throw new Error("Failed to delete booking");
-            }
-            // REMOVE BOOKING FROM STATE //
-            setBookings(bookings.filter(booking => booking.id !== bookingId));
-        } catch (error) {
-            setError("Failed to delete booking");
-        }
-    };
+        dispatch(fetchBookings());
+    }, [dispatch]);
 
     return (
-        <div className="container mx-auto p-6">
-            <h1 className="text-2xl font-bold mb-6">Your Bookings</h1>
-            {error && <p className="text-red-500">{error}</p>}
-            {bookings.length === 0 ? (
-                <p>No bookings found</p>
-            ) : (
-                <ul>
-                    {bookings.map(booking => {
-
-                        const flight = booking.flight || {};
-                        return (
-                            <li key={booking.id} className="mb-6 p-4 bg-white shadow rounded-lg">
-                                <h2 className="text-xl font-bold mb-2">Flight Details</h2>
-                                <p className="text-base mb-1">
-                                    <span className="font-semibold">Flight Number:</span> {flight.flightNumber || 'N/A'}
-                                </p>
-                                <p className="text-base mb-1">
-                                    <span className="font-semibold">Airline:</span> {flight.airline || 'N/A'}
-                                </p>
-                                <p className="text-base mb-1">
-                                    <span className="font-semibold">Departure:</span> {flight.departureAirport || 'N/A'} at {flight.departureTime ? new Date(flight.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A'}
-                                </p>
-                                <p className="text-base mb-1">
-                                    <span className="font-semibold">Arrival:</span> {flight.arrivalAirport || 'N/A'} at {flight.arrivalTime ? new Date(flight.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A'}
-                                </p>
-                                <p className="text-base mb-1">
-                                    <span className="font-semibold">Duration:</span> {flight.duration || 'N/A'}
-                                </p>
-                                <p className="text-base mb-1">
-                                    <span className="font-semibold">Price:</span> ${flight.price ? Number(flight.price).toFixed(2) : 'N/A'}
-                                </p>
-                                <div className="mt-4 flex space-x-4">
-                                    <button
-                                        onClick={() => handleDeleteBooking(booking.id)}
-                                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                                    >
-                                        Delete
-                                    </button>
-                                    <Link
-                                        to={`/bookings/${booking.id}`}
-                                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                                    >
-                                        View Details
-                                    </Link>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul>
-            )}
-            <Link
-                to="/search"
-                className="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-                Search Flights
-            </Link>
+        <div
+            style={{
+                backgroundImage: `url(${cloudBackground})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                minHeight: '100vh'
+            }}
+            className="flex justify-center items-center"
+        >
+            <div className="container bg-cloud-300 mx-auto p-6 w-full max-w-4xl">
+                <h1 className="text-3xl text-cloud-700 font-bold mb-6 text-center">Bookings</h1>
+                {loading && <p className="text-center">Loading...</p>}
+                {error && <p className="text-salmon-500 text-center">{error}</p>}
+                {bookings.length === 0 ? (
+                    <p className="text-center">No bookings found</p>
+                ) : (
+                    <ul className="space-y-6">
+                        {bookings.map(booking => {
+                            const flight = booking.flight || {};
+                            return (
+                                <li key={booking.id} className="p-4 bg-moss-100 shadow rounded-lg text-center">
+                                    <h2 className="text-xl text-sky-700 font-bold mb-2">Flight Details</h2>
+                                    <p className="text-base mb-1">
+                                        <FaCalendarAlt className="inline-block mr-2" />
+                                        <span className="font-semibold">Departure Date:</span> {flight.departureTime ? new Date(flight.departureTime).toLocaleDateString() : 'N/A'}
+                                    </p>
+                                    <p className="text-base mb-1">
+                                        <FaMapMarkerAlt className="inline-block mr-2" />
+                                        <span className="font-semibold">Departure Airport:</span> {flight.departureAirport || 'N/A'}
+                                    </p>
+                                    <p className="text-base mb-1">
+                                        <FaMapMarkerAlt className="inline-block mr-2" />
+                                        <span className="font-semibold">Arrival Airport:</span> {flight.arrivalAirport || 'N/A'}
+                                    </p>
+                                    <div className="mt-4 flex justify-center space-x-4">
+                                        <Link
+                                            to={`/bookings/${booking.id}`}
+                                            className="px-4 py-2 bg-cloud-900 text-cloud-100 rounded hover:bg-cloud-300"
+                                        >
+                                            View Details
+                                        </Link>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
+                <div className="mt-6 text-center">
+                    <Link
+                        to="/search"
+                        className="inline-block px-4 py-2 bg-cloud-900 text-cloud-50 rounded hover:bg-cloud-400"
+                    >
+                        Search Flights
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 };
