@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { sequelize, Booking } = require('./models');
+const weatherRoutes = require('./routes/weather');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const bookingRoutes = require('./routes/booking');
@@ -23,6 +24,7 @@ app.use(express.json());
 // ROUTES //
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use('/weather', weatherRoutes);
 app.use('/bookings', bookingRoutes);
 app.use('/flights', flightRoutes);
 app.use('/seats', seatsRouter);
