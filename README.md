@@ -45,3 +45,17 @@ Welcome to **Bifröst Bookings** – your gateway to seamless flight reservation
 ### Note
 
 This project is built for personal learning purposes. While I'm passionate about developing **Bifröst Bookings**, I don't plan to take it into full production. It's a playground for honing my skills and exploring new technologies at the moment.
+
+---
+
+## Credits
+
+Background images: 
+- [r3dmax](https://unsplash.com/@r3dmax) on Unsplash
+- [theoeilertsen](https://unsplash.com/@theoeilertsen) on Unsplash
+- [chrismarquardt](https://unsplash.com/@chrismarquardt) on Unsplash
+- [dpascoa](https://unsplash.com/@dpascoa) on Unsplash
+- [cikstefan](https://unsplash.com/@cikstefan) on Unsplash
+
+
+
