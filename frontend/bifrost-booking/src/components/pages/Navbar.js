@@ -30,7 +30,6 @@ const Navbar = () => {
         setIsProfileMenuOpen(false);
     };
 
-
     let loginActions = (
         <div className="flex space-x-4">
             <Link
@@ -49,7 +48,6 @@ const Navbar = () => {
             </Link>
         </div>
     );
-
 
     if (currentUser) {
         loginActions = (
@@ -80,13 +78,11 @@ const Navbar = () => {
                         Bifröst Bookings
                     </Link>
                 </div>
-                {/* Mobile menu toggle */}
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className="text-sky-900">
                         {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
                     </button>
                 </div>
-                {/* Menu Links */}
                 <div
                     className={`${isOpen
                         ? "absolute top-full right-0 left-0 bg-smoke-400 shadow-lg mt-2 rounded-md w-full md:w-auto"
@@ -115,15 +111,14 @@ const Navbar = () => {
                         )}
                     </div>
                 </div>
-                {/* Profile Button for Desktop */}
                 {currentUser && (
                     <div className="relative hidden md:block">
                         <button
                             onClick={toggleProfileMenu}
                             className="flex items-center justify-center h-8 w-8 bg-sky-400 text-sky-950 font-bold rounded-full"
                         >
-                            {currentUser.firstName[0]}
-                            {currentUser.lastName[0]}
+                            {currentUser?.firstName?.[0] || ''}
+                            {currentUser?.lastName?.[0] || ''}
                         </button>
                         {isProfileMenuOpen && (
                             <div className="absolute right-0 mt-2 w-48 bg-smoke-950 text-smoke-50 rounded-md shadow-lg z-10">
